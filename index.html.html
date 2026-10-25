@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة العلم والإيمان التعليمية | شحاته أحمد</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        emeraldCustom: '#059669',
+                        goldCustom: '#f59e0b',
+                        navyCustom: '#0f172a',
+                        navyLight: '#1e293b'
+                    },
+                    fontFamily: {
+                        tajawal: ['Tajawal', 'sans-serif']
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            user-select: auto;
+            -webkit-user-select: auto;
+            background-attachment: fixed;
+        }
+
+        /* Glassmorphic Styles */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card-hover:hover {
+            transform: translateY(-4px);
+            border-color: rgba(245, 158, 11, 0.4);
+            box-shadow: 0 12px 30px -10px rgba(5, 150, 105, 0.25);
+        }
+
+        /* Light mode explicit overrides */
+        html:not(.dark) body {
+            background-color: #f1f5f9 !important;
+            color: #0f172a !important;
+        }
+        html:not(.dark) .glass-card {
+            background: rgba(255, 255, 255, 0.85) !important;
+            border-color: rgba(203, 213, 225, 0.8) !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+        html:not(.dark) header {
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            border-color: #e2e8f0 !important;
+        }
+        html:not(.dark) .bg-slate-800,
+        html:not(.dark) .bg-slate-800\/80,
+        html:not(.dark) .bg-slate-800\/90,
+        html:not(.dark) .bg-slate-800\/60,
+        html:not(.dark) .bg-slate-900\/60 {
+            background-color: #ffffff !important;
+            border-color: #cbd5e1 !important;
+            color: #0f172a !important;
+        }
+        html:not(.dark) .bg-slate-900,
+        html:not(.dark) .bg-slate-950 {
+            background-color: #f8fafc !important;
+            color: #0f172a !important;
+        }
+        html:not(.dark) .text-white {
+            color: #0f172a !important;
+        }
+        html:not(.dark) .text-slate-300,
+        html:not(.dark) .text-slate-400 {
+            color: #334155 !important;
+        }
+        html:not(.dark) input, html:not(.dark) select, html:not(.dark) textarea {
+            background-color: #ffffff !important;
+            color: #0f172a !important;
+            border-color: #cbd5e1 !important;
+        }
+
+        /* Custom Watermark Styles */
+        .watermark-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+            opacity: 0.12;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-content: space-around;
+        }
+        .watermark-text {
+            transform: rotate(-25deg);
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #f59e0b;
+            white-space: nowrap;
+            margin: 30px;
+        }
+
+        /* Anti-Copy Guard for Printing */
+        @media print {
+            body { display: none !important; }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #059669;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col transition-colors duration-300 antialiased selection:bg-amber-500 selection:text-slate-950">
+
+    <!-- Watermark Layer (Dynamic) -->
+    <div id="watermarkLayer" class="watermark-container hidden"></div>
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-gradient-to-r from-emerald-800 via-teal-700 to-amber-600 text-white text-xs md:text-sm py-2 px-4 text-center font-bold shadow-md flex justify-between items-center relative z-50">
+        <div class="flex items-center gap-2 mx-auto sm:mx-0">
+            <span class="flex h-2 w-2 relative">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-300"></span>
+            </span>
+            <span>فتح باب التسجيل والاشتراكات للعام الدراسي الجديد 2026 / 2027 م!</span>
+        </div>
+        <div class="flex items-center space-x-4 space-x-reverse">
+            <!-- Custom Single Icon Theme Toggle Switch -->
+            <button onclick="toggleDarkMode()" id="themeToggleBtn" aria-label="Toggle Theme" class="relative w-9 h-9 bg-slate-950/80 hover:bg-slate-900 border border-amber-500/50 rounded-full transition-all duration-300 flex items-center justify-center cursor-pointer focus:outline-none shadow-md hover:scale-110">
+                <i id="themeToggleIcon" class="fa-solid fa-moon text-amber-400 text-sm transition-all duration-300"></i>
+            </button>
+            <span class="hidden sm:inline-flex items-center text-amber-200 text-xs">
+                <i class="fa-solid fa-headset ml-1.5 text-amber-300"></i> الدعم: 01158237903
+            </span>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-40 shadow-xl transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo & Title -->
+            <div class="flex items-center gap-3.5 cursor-pointer group" onclick="showSection('home')">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-amber-500 flex items-center justify-center text-white text-2xl font-black shadow-lg shadow-emerald-900/40 group-hover:scale-105 transition duration-300">
+                    <i class="fa-solid fa-atom text-white text-2xl animate-pulse-slow"></i>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <h1 class="text-lg md:text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-emerald-400 leading-tight">منصة العلم والإيمان</h1>
+                    <p class="text-[11px] md:text-xs text-slate-400 font-semibold mt-0.5">منصة تعليمية لطلاب الأزهر والتعليم العام</p>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-8 space-x-reverse font-bold text-sm">
+                <button onclick="showSection('home')" class="hover:text-amber-400 transition flex items-center gap-2 py-1 relative after:content-[''] after:absolute after:bottom-0 after:right-0 after:w-0 after:h-0.5 after:bg-amber-400 hover:after:w-full after:transition-all">
+                    <i class="fa-solid fa-house text-emerald-500"></i> الرئيسية
+                </button>
+                <button onclick="showSection('grades')" class="hover:text-amber-400 transition flex items-center gap-2 py-1 relative after:content-[''] after:absolute after:bottom-0 after:right-0 after:w-0 after:h-0.5 after:bg-amber-400 hover:after:w-full after:transition-all">
+                    <i class="fa-solid fa-graduation-cap text-emerald-500"></i> المراحل الدراسية
+                </button>
+                <button onclick="openPaymentModal()" class="hover:border-amber-400 transition flex items-center gap-2 bg-emerald-950/60 text-emerald-400 border border-emerald-500/40 px-4 py-2 rounded-xl hover:bg-emerald-900/50">
+                    <i class="fa-solid fa-wallet text-amber-400"></i> اشتراك وتفعيل
+                </button>
+                <button onclick="showSection('adminLogin')" class="text-slate-400 hover:text-amber-400 transition flex items-center gap-1.5 text-xs opacity-80 hover:opacity-100">
+                    <i class="fa-solid fa-lock text-slate-500"></i> دخول الإدارة
+                </button>
+            </nav>
+
+            <!-- Student Profile Badge / Login Status -->
+            <div id="navUserArea" class="flex items-center gap-3">
+                <button onclick="openLoginModal()" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black px-5 py-2.5 rounded-xl shadow-lg shadow-amber-500/20 transition transform hover:scale-105 text-sm">
+                    <i class="fa-solid fa-right-to-bracket ml-2"></i> تسجيل الدخول
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- SECTION 1: HOME PAGE -->
+        <section id="homeSection" class="space-y-12">
+            <!-- Hero Banner -->
+            <div class="relative rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-slate-700/60 p-8 md:p-14 overflow-hidden shadow-2xl">
+                <!-- Background Glowing Orbs -->
+                <div class="absolute -top-24 -left-24 w-96 h-96 bg-emerald-600/15 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10 grid md:grid-cols-2 gap-10 items-center">
+                    <div class="space-y-6">
+                        <span class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-black px-4 py-2 rounded-full">
+                            <i class="fa-solid fa-star text-amber-400"></i> طريقك نحو الدرجة النهائية في الفيزياء والعلوم
+                        </span>
+                        <h2 class="text-3xl md:text-5xl font-black text-white leading-tight">
+                            الشرح المبسط والنظام الحديث <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-emerald-400">لطلاب الثانوية والإعدادية</span>
+                        </h2>
+                        <p class="text-slate-300 text-base md:text-lg leading-relaxed font-medium">
+                            تغطية كاملة للمناهج العامة والأزهرية، بنوك أسئلة تفاعلية، امتحانات محاكية مع مراقبة النزاهة، وشهادات تقدير فورية فور التفوق!
+                        </p>
+                        <div class="flex flex-wrap gap-4 pt-2">
+                            <button onclick="showSection('grades')" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold px-8 py-4 rounded-2xl shadow-xl shadow-emerald-950/50 transition transform hover:-translate-y-1 flex items-center gap-2">
+                                <span>استكشف الصفوف الدراسية</span>
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </button>
+                            <button onclick="openPaymentModal()" class="glass-card hover:bg-slate-700/50 text-amber-400 font-extrabold px-7 py-4 rounded-2xl transition border border-amber-500/30 flex items-center gap-2">
+                                <i class="fa-solid fa-bolt text-amber-400"></i>
+                                <span>اشترك وفعل حسابك</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Stats & Cards Banner -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="glass-card p-6 rounded-2xl text-center glass-card-hover">
+                            <div class="w-12 h-12 mx-auto bg-emerald-500/10 rounded-xl flex items-center justify-center mb-3">
+                                <i class="fa-solid fa-user-graduate text-2xl text-emerald-400"></i>
+                            </div>
+                            <div class="text-3xl font-black text-white">—</div>
+                            <div class="text-xs font-bold text-slate-400 mt-1">طالب متفوق</div>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl text-center glass-card-hover">
+                            <div class="w-12 h-12 mx-auto bg-amber-500/10 rounded-xl flex items-center justify-center mb-3">
+                                <i class="fa-solid fa-file-pen text-2xl text-amber-400"></i>
+                            </div>
+                            <div class="text-3xl font-black text-white">نماذج</div>
+                            <div class="text-xs font-bold text-slate-400 mt-1">امتحان تفاعلي</div>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl text-center glass-card-hover">
+                            <div class="w-12 h-12 mx-auto bg-amber-500/10 rounded-xl flex items-center justify-center mb-3">
+                                <i class="fa-solid fa-award text-2xl text-amber-400"></i>
+                            </div>
+                            <div class="text-3xl font-black text-white">قيد الإعداد</div>
+                            <div class="text-xs font-bold text-slate-400 mt-1">مراجعة المناهج</div>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl text-center glass-card-hover">
+                            <div class="w-12 h-12 mx-auto bg-emerald-500/10 rounded-xl flex items-center justify-center mb-3">
+                                <i class="fa-solid fa-shield-halved text-2xl text-emerald-400"></i>
+                            </div>
+                            <div class="text-3xl font-black text-white">محمي</div>
+                            <div class="text-xs font-bold text-slate-400 mt-1">نظام حماية النزاهة</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Highlights -->
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-card p-8 rounded-3xl glass-card-hover space-y-3">
+                    <div class="w-14 h-14 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center text-2xl font-bold border border-emerald-500/20">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-white">تفعيل أوتوماتيكي سريع</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">ادفع عبر فودافون كاش أو إنستا باي أو استخدم كروت الشحن ليفتح حسابك فوراً دون انتظار.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-3xl glass-card-hover space-y-3">
+                    <div class="w-14 h-14 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center text-2xl font-bold border border-emerald-500/20">
+                        <i class="fa-solid fa-vial-circle-check"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-white">تجربة مجانية Demo</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">يمكنك تجربة نماذج الامتحانات ومعاينة بنك الأسئلة مجاناً قبل اتخاذ قرار الاشتراك.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: GRADES & COURSES SELECTOR -->
+        <section id="gradesSection" class="hidden space-y-8">
+            <div class="text-center space-y-3 max-w-2xl mx-auto">
+                <span class="text-emerald-400 font-bold text-xs uppercase tracking-widest bg-emerald-500/10 px-4 py-1.5 rounded-full border border-emerald-500/20">المراحل الدراسية</span>
+                <h2 class="text-3xl md:text-4xl font-black text-white">اختر مرحلتك الدراسية (2026 / 2027)</h2>
+                <p class="text-slate-400 text-sm">استعرض المناهج المتاحة والامتحانات التفاعلية الخاصة بكل صف دراسي</p>
+            </div>
+
+            <!-- Tabs Grade Filter -->
+            <div class="flex justify-center border-b border-slate-800 pb-4 gap-3 flex-wrap">
+                <button onclick="filterGradeCategory('prep')" id="tabPrep" class="px-6 py-3 rounded-xl font-extrabold text-sm bg-slate-800 hover:bg-slate-700 text-slate-300 transition border border-slate-700">المرحلة الإعدادية (علوم)</button>
+                <button onclick="filterGradeCategory('sec')" id="tabSec" class="px-6 py-3 rounded-xl font-extrabold text-sm bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg transition border border-emerald-500/50">المرحلة الثانوية (فيزياء)</button>
+            </div>
+
+            <!-- Course Cards Grid -->
+            <div id="coursesGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically Populated by JS -->
+            </div>
+        </section>
+
+        <!-- SECTION 3: EXAM DASHBOARD / QUIZ RUNNER -->
+        <section id="examSection" class="hidden space-y-6">
+            <!-- Exam Header Bar -->
+            <div class="glass-card rounded-2xl p-5 flex flex-wrap items-center justify-between gap-4 sticky top-24 z-30 shadow-2xl border-amber-500/30">
+                <div>
+                    <h3 id="examTitleHeader" class="text-xl font-black text-amber-400">اختبار الفيزياء التفاعلي</h3>
+                    <p id="examSubHeader" class="text-xs font-bold text-slate-400 mt-1">الصف الثاني الثانوي - الأزهري والعام</p>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <!-- Tab Switch Alert Badge -->
+                    <div class="bg-red-950/90 border border-red-500/60 px-4 py-2 rounded-xl text-xs font-extrabold text-red-300 flex items-center gap-2">
+                        <i class="fa-solid fa-triangle-exclamation text-red-400 animate-pulse"></i>
+                        <span>محاولات الخروج: <span id="tabSwitchCount" class="text-white text-sm">0</span>/3</span>
+                    </div>
+
+                    <!-- Timer Badge -->
+                    <div class="bg-slate-950 border border-amber-500/50 px-5 py-2 rounded-xl text-center shadow-inner">
+                        <div class="text-[10px] text-slate-400 font-bold">الوقت المتبقي</div>
+                        <div id="examTimer" class="font-mono text-xl font-black text-amber-400 tracking-wider">20:00</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-4 gap-6">
+                <!-- Main Question Area -->
+                <div class="lg:col-span-3 space-y-6">
+                    <div class="glass-card rounded-3xl p-6 md:p-8 space-y-6 relative overflow-hidden shadow-xl">
+                        
+                        <!-- Question Progress Indicator -->
+                        <div class="flex justify-between items-center text-xs text-slate-400 font-bold border-b border-slate-700/60 pb-4">
+                            <span class="flex items-center gap-1.5">
+                                <i class="fa-solid fa-circle-question text-emerald-400"></i>
+                                السؤال <span id="currentQNum" class="text-amber-400 text-lg font-black mx-1">1</span> من <span id="totalQNum" class="text-white">5</span>
+                            </span>
+                            <span id="questionTypeBadge" class="bg-emerald-950/80 text-emerald-300 px-3.5 py-1.5 rounded-full border border-emerald-700/50 font-bold">اختيار من متعدد</span>
+                        </div>
+
+                        <!-- Question Text -->
+                        <div class="space-y-2 py-2">
+                            <h4 id="questionText" class="text-lg md:text-xl font-bold text-white leading-relaxed">
+                                جارٍ تحميل السؤال...
+                            </h4>
+                        </div>
+
+                        <!-- Answer Options / Input Area -->
+                        <div id="answersContainer" class="space-y-3 pt-2">
+                            <!-- Populated dynamically -->
+                        </div>
+
+                        <!-- Action Bar -->
+                        <div class="flex justify-between items-center pt-6 border-t border-slate-700/60">
+                            <button onclick="toggleFlagCurrentQuestion()" id="flagBtn" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 transition border border-slate-700">
+                                <i class="fa-regular fa-bookmark"></i> <span>تظليل للمراجعة</span>
+                            </button>
+
+                            <div class="flex gap-3">
+                                <button onclick="navigateQuestion(-1)" id="prevQBtn" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-bold px-6 py-2.5 rounded-xl text-sm transition disabled:opacity-40">
+                                    السابق
+                                </button>
+                                <button onclick="navigateQuestion(1)" id="nextQBtn" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold px-7 py-2.5 rounded-xl text-sm shadow-lg transition">
+                                    التالي
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Right Question Palette Grid -->
+                <div class="glass-card rounded-3xl p-6 space-y-5 h-fit shadow-xl">
+                    <h4 class="font-black text-sm text-slate-200 border-b border-slate-700/80 pb-3 flex justify-between items-center">
+                        <span>خريطة الأسئلة</span>
+                        <i class="fa-solid fa-border-all text-emerald-400"></i>
+                    </h4>
+                    
+                    <div id="questionPaletteGrid" class="grid grid-cols-5 gap-2.5">
+                        <!-- Populated Dynamically -->
+                    </div>
+
+                    <div class="space-y-2.5 pt-3 border-t border-slate-700/80 text-xs text-slate-400 font-bold">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3.5 h-3.5 bg-emerald-600 rounded-md"></span> مجاب عنه
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-3.5 h-3.5 bg-amber-500 rounded-md"></span> مظلل للمراجعة
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-3.5 h-3.5 bg-slate-800 border border-slate-700 rounded-md"></span> غير مجاب
+                        </div>
+                    </div>
+
+                    <button onclick="confirmSubmitExam()" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black py-3.5 rounded-2xl shadow-xl transition transform hover:scale-[1.02] flex items-center justify-center gap-2">
+                        <span>إنهاء وتسليم الامتحان</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: EXAM RESULT VIEW -->
+        <section id="resultSection" class="hidden space-y-8 max-w-4xl mx-auto">
+            <!-- Results Header Card -->
+            <div class="glass-card rounded-3xl p-8 md:p-10 text-center space-y-6 relative overflow-hidden shadow-2xl">
+                <div id="resultIconBadge" class="w-24 h-24 mx-auto rounded-3xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center text-5xl shadow-inner">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+
+                <div class="space-y-2">
+                    <h2 class="text-2xl md:text-3xl font-black text-white">نتيجة الامتحان والتقييم</h2>
+                    <p id="resultStudentName" class="text-amber-400 font-bold text-xl">الطالب: محمد أحمد علي</p>
+                </div>
+
+                <!-- Score Meter -->
+                <div class="max-w-md mx-auto bg-slate-950/80 border border-slate-800 rounded-2xl p-6 shadow-inner">
+                    <div class="text-5xl font-black text-emerald-400" id="finalScoreText">90%</div>
+                    <div class="text-xs font-bold text-slate-400 mt-2" id="scoreSubText">حصلت على 18 درجة من أصل 20</div>
+                    <div class="w-full bg-slate-800 h-3.5 rounded-full mt-4 overflow-hidden p-0.5 border border-slate-700">
+                        <div id="scoreProgressBar" class="bg-gradient-to-r from-emerald-500 to-amber-400 h-full rounded-full w-0 transition-all duration-1000"></div>
+                    </div>
+                </div>
+
+                <!-- Skill Analysis -->
+                <div class="grid sm:grid-cols-3 gap-4 text-right text-xs pt-2">
+                    <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 space-y-1">
+                        <div class="text-amber-400 font-bold flex items-center gap-1.5"><i class="fa-solid fa-circle-check"></i> نقاط القوة</div>
+                        <p class="text-slate-300" id="strengthAnalysisText">إجادة ممتازة للمفاهيم الأساسية وحساب المسائل.</p>
+                    </div>
+                    <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 space-y-1">
+                        <div class="text-emerald-400 font-bold flex items-center gap-1.5"><i class="fa-solid fa-lightbulb"></i> نصيحة المراجعة</div>
+                        <p class="text-slate-300" id="adviceAnalysisText">راجع التعليلات الخاصة بأسئلة الأزهر لضمان الدرجة النهائية.</p>
+                    </div>
+                    <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 space-y-1">
+                        <div class="text-blue-400 font-bold flex items-center gap-1.5"><i class="fa-solid fa-clock"></i> إدارة الوقت</div>
+                        <p class="text-slate-300" id="timeAnalysisText">استغرقت 12 دقيقة من أصل 20 دقيقة مخصصة.</p>
+                    </div>
+                </div>
+
+                <!-- Action buttons -->
+                <div class="flex flex-wrap justify-center gap-4 pt-4">
+                    <button onclick="sendParentWhatsAppReport()" class="bg-green-600 hover:bg-green-500 text-white font-extrabold px-6 py-3.5 rounded-xl flex items-center gap-2 shadow-lg transition transform hover:scale-105">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> إرسال التقرير لولي الأمر
+                    </button>
+                    <button onclick="showSection('grades')" class="bg-slate-800 hover:bg-slate-700 text-white font-bold px-6 py-3.5 rounded-xl border border-slate-700 transition">
+                        العودة للمراحل
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- SECTION 5: ADMIN DASHBOARD -->
+        <section id="adminSection" class="hidden space-y-8">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-4">
+                <div>
+                    <h2 class="text-2xl font-black text-amber-400">لوحة تحكم الأدمن (الإدارة)</h2>
+                    <p class="text-xs text-slate-400 mt-1">إدارة تجريبية للطلبات وبنوك الأسئلة (التفعيل الآمن يحتاج خادمًا)</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button onclick="changeAdminPassword()" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-amber-400 px-4 py-2 rounded-xl text-xs font-bold transition">
+                        <i class="fa-solid fa-key ml-1"></i> تغيير كلمة المرور
+                    </button>
+                    <button onclick="logoutAdmin()" class="bg-red-950/80 hover:bg-red-900 border border-red-800 text-red-300 px-4 py-2 rounded-xl text-xs font-bold transition">
+                        <i class="fa-solid fa-right-from-bracket ml-1"></i> خروج
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="grid sm:grid-cols-3 gap-5">
+                <div class="glass-card p-6 rounded-2xl flex items-center justify-between">
+                    <div>
+                        <div class="text-xs text-slate-400 font-bold">طلبات التفعيل المعلقة</div>
+                        <div id="adminPendingCount" class="text-3xl font-black text-amber-400 mt-1">2 طلبات</div>
+                    </div>
+                    <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-400 text-2xl">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl flex items-center justify-between">
+                    <div>
+                        <div class="text-xs text-slate-400 font-bold">كروت الشحن المتاحة</div>
+                        <div id="adminCodesCount" class="text-3xl font-black text-emerald-400 mt-1">2 كود</div>
+                    </div>
+                    <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 text-2xl">
+                        <i class="fa-solid fa-barcode"></i>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl flex items-center justify-between">
+                    <div>
+                        <div class="text-xs text-slate-400 font-bold">صفوف بها أسئلة محملة</div>
+                        <div id="adminQuestionsCount" class="text-3xl font-black text-blue-400 mt-1">5 صفوف</div>
+                    </div>
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-400 text-2xl">
+                        <i class="fa-solid fa-file-circle-plus"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUESTION BANK IMPORTER SECTION -->
+            <div class="glass-card rounded-3xl p-6 md:p-8 space-y-6">
+                <div class="flex justify-between items-center border-b border-slate-700/80 pb-4">
+                    <h3 class="font-black text-lg text-white flex items-center gap-2">
+                        <i class="fa-solid fa-file-arrow-up text-amber-400"></i> إضافة وتحديث ملفات الأسئلة
+                    </h3>
+                    <button onclick="downloadQuestionsSampleJSON()" class="bg-slate-800 hover:bg-slate-700 text-xs text-amber-300 font-bold px-4 py-2 rounded-xl border border-slate-700 transition">
+                        <i class="fa-solid fa-download ml-1"></i> تحميل نموذج أسئلة جاهز (JSON)
+                    </button>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- File Upload Input -->
+                    <div class="space-y-3">
+                        <label class="block text-xs font-bold text-slate-300">اختر الصف الدراسي للملف:</label>
+                        <select id="importGradeSelect" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white">
+                            <option value="1prep">الصف الأول الإعدادي (علوم)</option>
+                            <option value="2prep">الصف الثاني الإعدادي (علوم)</option>
+                            <option value="3prep">الصف الثالث الإعدادي (علوم)</option>
+                            <option value="1sec">الصف الأول الثانوي (فيزياء)</option>
+                            <option value="2sec" selected>الصف الثاني الثانوي (فيزياء)</option>
+                        </select>
+
+                        <label class="block text-xs font-bold text-slate-300 mt-2">رفع ملف JSON يحتوي على الأسئلة:</label>
+                        <input type="file" id="jsonFileInput" accept=".json" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-slate-300 file:bg-emerald-600 file:text-white file:border-0 file:rounded-lg file:px-3 file:py-1 file:ml-3 file:cursor-pointer">
+                        <button onclick="importQuestionsFromFile()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-3 rounded-xl text-xs transition">
+                            <i class="fa-solid fa-upload ml-1"></i> حفظ وتحديث ملف الأسئلة
+                        </button>
+                    </div>
+
+                    <!-- Direct JSON Code Textarea -->
+                    <div class="space-y-3">
+                        <label class="block text-xs font-bold text-slate-300">أو لصق كود الأسئلة مباشرة (JSON):</label>
+                        <textarea id="jsonTextInput" rows="5" placeholder='[{"id": 1, "text": "السؤال هنا", "options": ["أ", "ب", "ج", "د"], "correct": 0}]' class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs font-mono text-amber-300 focus:outline-none focus:border-amber-500"></textarea>
+                        <button onclick="importQuestionsFromText()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-black py-3 rounded-xl text-xs transition">
+                            <i class="fa-solid fa-code ml-1"></i> تطبيق الأسئلة الملصوقة
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Transactions Table -->
+            <div class="glass-card rounded-3xl p-6 md:p-8 space-y-4">
+                <h3 class="font-black text-lg text-white">طلبات التحويل بانتظار التفعيل</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-right text-xs">
+                        <thead class="bg-slate-950 text-slate-400">
+                            <tr>
+                                <th class="p-3.5 rounded-r-xl">اسم الطالب</th>
+                                <th class="p-3.5">رقم الهاتف</th>
+                                <th class="p-3.5">الصف</th>
+                                <th class="p-3.5">المبلغ</th>
+                                <th class="p-3.5">الرقم المرجعي</th>
+                                <th class="p-3.5 text-center rounded-l-xl">الإجراء</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminPendingTable" class="divide-y divide-slate-800">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Code Generator -->
+            <div class="glass-card rounded-3xl p-6 md:p-8 space-y-4 max-w-lg">
+                <h3 class="font-black text-lg text-white">توليد أكواد شحن جديدة</h3>
+                <div class="flex gap-3">
+                    <input type="number" id="genCountInput" value="5" min="1" max="50" class="w-24 bg-slate-900 border border-slate-700 rounded-xl p-3 text-center text-white text-sm font-bold">
+                    <button onclick="generateScratchCodes()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-6 py-3 rounded-xl text-xs transition">
+                        إنشاء الأكواد
+                    </button>
+                </div>
+                <div id="generatedCodesOutput" class="bg-slate-950 border border-slate-800 rounded-2xl p-4 text-xs font-mono text-amber-400 space-y-1 hidden">
+                    <!-- Display generated codes -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: ADMIN LOGIN SECTION -->
+        <section id="adminLoginSection" class="hidden max-w-md mx-auto py-12">
+            <div class="glass-card p-8 md:p-10 rounded-3xl shadow-2xl space-y-6 border-amber-500/30">
+                <div class="text-center space-y-3">
+                    <div class="w-20 h-20 bg-amber-500/10 text-amber-400 rounded-3xl flex items-center justify-center text-3xl mx-auto border border-amber-500/30 shadow-inner">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h2 class="text-2xl font-black text-white">تسجيل دخول الأدمن</h2>
+                    <p class="text-xs text-slate-400 font-bold">منطقة محمية - مخصصة فقط للأستاذ شحاته أحمد</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs text-slate-300 font-bold mb-2">كلمة المرور الخاصة بالإدارة</label>
+                        <input type="password" id="adminPassInput" placeholder="••••••••" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3.5 text-sm text-white focus:outline-none focus:border-amber-500" onkeyup="if(event.key === 'Enter') verifyAdminLogin()">
+                    </div>
+                    <button onclick="verifyAdminLogin()" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black py-3.5 rounded-xl transition shadow-lg">
+                        دخول اللوحة
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- PAYMENT & ACTIVATION MODAL -->
+    <div id="paymentModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card border border-slate-700 rounded-3xl max-w-md w-full p-6 md:p-8 space-y-6 relative shadow-2xl">
+            <button onclick="closePaymentModal()" class="absolute top-5 left-5 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center space-y-2">
+                <h3 class="text-2xl font-black text-amber-400">اشتراك وتفعيل الحساب</h3>
+                <p class="text-xs text-slate-400 font-semibold">اختر طريقة الاشتراك المناسبة لك لتنشيط المنصة</p>
+            </div>
+
+            <!-- Payment Tabs -->
+            <div class="flex border-b border-slate-700/80 gap-2">
+                <button onclick="switchPaymentTab('wallet')" id="payTabWallet" class="flex-1 py-2.5 font-extrabold text-xs text-amber-400 border-b-2 border-amber-400">
+                    تحويل كاش / InstaPay
+                </button>
+                <button onclick="switchPaymentTab('code')" id="payTabCode" class="flex-1 py-2.5 font-extrabold text-xs text-slate-400 border-b-2 border-transparent">
+                    كارت الشحن (Code)
+                </button>
+            </div>
+
+            <!-- Tab 1: Vodafone Cash / InstaPay -->
+            <div id="payWalletPanel" class="space-y-4">
+                <div class="bg-slate-950/80 p-4 rounded-2xl border border-slate-800 space-y-2.5">
+                    <div class="text-xs text-slate-400 font-bold">أرقام التحويل المباشرة:</div>
+                    <div class="flex justify-between items-center text-xs font-mono bg-slate-900 p-3 rounded-xl border border-slate-800">
+                        <span>فودافون كاش: <strong class="text-amber-400">01012345678</strong></span>
+                        <button onclick="copyToClipboard('01012345678')" class="text-emerald-400 hover:text-emerald-300 font-bold">نسخ</button>
+                    </div>
+                    <div class="flex justify-between items-center text-xs font-mono bg-slate-900 p-3 rounded-xl border border-slate-800">
+                        <span>InstaPay: <strong class="text-amber-400">ahmed@instapay</strong></span>
+                        <button onclick="copyToClipboard('ahmed@instapay')" class="text-emerald-400 hover:text-emerald-300 font-bold">نسخ</button>
+                    </div>
+                </div>
+
+                <div class="space-y-3 text-xs">
+                    <div>
+                        <label class="block text-slate-300 font-bold mb-1.5">رقم المحفظة التي حولت منها</label>
+                        <input type="text" id="paySenderPhone" placeholder="010XXXXXXXX" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-slate-300 font-bold mb-1.5">الرقم المرجعي للعملية / رقم الإيصال</label>
+                        <input type="text" id="payRefNumber" placeholder="مثال: 98420194" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-slate-300 font-bold mb-1.5">الصف الدراسي</label>
+                        <select id="payGradeSelect" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white">
+                            <option value="1prep">أولى إعدادي (علوم) - 75 ج.م</option>
+                            <option value="2prep">ثانية إعدادي (علوم) - 75 ج.م</option>
+                            <option value="3prep">ثالثة إعدادي (علوم) - 85 ج.م</option>
+                            <option value="1sec">أولى ثانوي (فيزياء) - 100 ج.م</option>
+                            <option value="2sec" selected>ثانية ثانوي (فيزياء) - 100 ج.م</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button onclick="submitPaymentRequest()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-3.5 rounded-xl text-xs transition shadow-lg">
+                    إرسال طلب التفعيل
+                </button>
+            </div>
+
+            <!-- Tab 2: Scratch Card Code -->
+            <div id="payCodePanel" class="hidden space-y-4">
+                <div class="space-y-3 text-xs">
+                    <div>
+                        <label class="block text-slate-300 font-bold mb-2">أدخل كود الشحن (مكون من 12 خانة)</label>
+                        <input type="text" id="scratchCodeInput" placeholder="PHYS-XXXX-XXXX" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3.5 text-amber-400 font-mono text-center text-base tracking-widest font-black">
+                    </div>
+                </div>
+                <button onclick="redeemScratchCode()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-black py-3.5 rounded-xl text-xs transition shadow-lg">
+                    تفعيل الكود فوراً
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- STUDENT LOGIN / REGISTER MODAL -->
+    <div id="loginModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card border border-slate-700 rounded-3xl max-w-md w-full p-6 md:p-8 space-y-6 relative shadow-2xl">
+            <button onclick="closeLoginModal()" class="absolute top-5 left-5 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center space-y-2">
+                <h3 id="authTitle" class="text-2xl font-black text-amber-400">إنشاء حساب طالب</h3>
+                <p class="text-xs text-slate-400 font-semibold">سجّل ببريدك الإلكتروني وكلمة مرورك للمتابعة</p>
+            </div>
+
+            <div class="space-y-4 text-xs">
+                <div id="authNameWrap">
+                    <label class="block text-slate-300 font-bold mb-1.5">الاسم بالكامل</label>
+                    <input type="text" id="loginNameInput" autocomplete="name" placeholder="اكتب اسم الطالب بالكامل" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white">
+                </div>
+                <div>
+                    <label class="block text-slate-300 font-bold mb-1.5">البريد الإلكتروني</label>
+                    <input type="email" id="loginEmailInput" autocomplete="email" required placeholder="example@gmail.com" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white">
+                </div>
+                <div>
+                    <label class="block text-slate-300 font-bold mb-1.5">كلمة المرور (٨ أحرف على الأقل)</label>
+                    <input type="password" id="loginPasswordInput" autocomplete="new-password" minlength="8" required placeholder="اكتب كلمة مرور قوية" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white">
+                </div>
+                <div id="authGradeWrap">
+                    <label class="block text-slate-300 font-bold mb-1.5">الصف الدراسي</label>
+                    <select id="loginGradeSelect" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white">
+                        <option value="1prep">الصف الأول الإعدادي</option>
+                        <option value="2prep">الصف الثاني الإعدادي</option>
+                        <option value="3prep">الصف الثالث الإعدادي</option>
+                        <option value="1sec">الصف الأول الثانوي</option>
+                        <option value="2sec" selected>الصف الثاني الثانوي</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <button id="authSubmitButton" onclick="submitStudentAuth()" class="w-full bg-gradient-to-r from-amber-500 to-emerald-600 hover:from-amber-600 hover:to-emerald-700 text-slate-950 font-black py-3.5 rounded-xl text-xs transition shadow-lg">إنشاء الحساب</button>
+                <button id="authModeButton" onclick="toggleStudentAuthMode()" class="w-full text-emerald-300 hover:text-emerald-200 font-bold py-2 text-xs">عندك حساب بالفعل؟ سجّل دخولك</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl w-full mx-auto px-4 pb-6">
+        <div class="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-4 text-sm text-amber-200 leading-relaxed">
+            <strong>تنبيه النسخة التجريبية:</strong> سيتم جلب قائمة الكورسات المنشورة من Supabase بعد إعداد المفتاح العام. تسجيل الدخول والاشتراكات وحفظ نتائج الامتحانات ما زالت تحتاج ربطًا آمنًا بالخادم؛ لا تستخدم النسخة لاستقبال بيانات أو مدفوعات حقيقية.
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800/80 py-10 text-center text-xs text-slate-500 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 space-y-4">
+            <p class="font-extrabold text-slate-400">منصة العلم والإيمان للأستاذ شحاته أحمد © 2026 / 2027 م</p>
+            <p>جميع الحقوق محفوظة - مخصصة لطلاب الثانوية الأزهرية والعامة في جمهورية مصر العربية</p>
+
+            <p class="text-sm text-slate-500">إشراف وملكية المحتوى: الأستاذ شحاته أحمد</p>
+        </div>
+    </footer>
+
+    <!-- Supabase JavaScript client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // GLOBAL STATE
+        let currentUser = localStorage.getItem('shehata_student') ? JSON.parse(localStorage.getItem('shehata_student')) : null;
+        let isAdminLoggedIn = false;
+        let adminPassword = localStorage.getItem('shehata_admin_pass') || '';
+        let demoMode = false;
+        let examResults = JSON.parse(localStorage.getItem('shehata_exam_results') || '[]');
+        let activeGradeCategory = 'sec';
+        let currentExamData = null;
+        let currentQuestionIndex = 0;
+        let userAnswers = {};
+        let flaggedQuestions = {};
+        let examTimerInterval = null;
+        let timeRemainingSeconds = 0;
+        let tabSwitchCounter = 0;
+
+        // SUPABASE CONFIGURATION
+        // Paste the project's PUBLIC sb_publishable key here. Never use a Secret/service_role key in browser code.
+        const SUPABASE_URL = 'https://orrkbtvmowsjogjtqkhk.supabase.co';
+        const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_YVPmoqqVv5oXyY2QS2YKsw_JMZTe2LS';
+        window.supabaseClient = null;
+
+        // Courses are loaded from the published rows in public.courses.
+        let coursesData = [];
+
+        function initializeSupabaseClient() {
+            const key = SUPABASE_PUBLISHABLE_KEY.trim();
+            if (!window.supabase || !window.supabase.createClient || !key || key === 'PASTE_YOUR_SB_PUBLISHABLE_KEY_HERE') {
+                return false;
+            }
+            window.supabaseClient = window.supabase.createClient(SUPABASE_URL, key);
+            return true;
+        }
+
+        async function loadCoursesFromSupabase() {
+            const grid = document.getElementById('coursesGrid');
+            if (!initializeSupabaseClient()) {
+                if (grid) grid.innerHTML = '<div class="col-span-full rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5 text-amber-200">قاعدة البيانات لم تُربط بعد. أضف مفتاح Supabase العام داخل إعدادات الكود ثم أعد فتح الصفحة.</div>';
+                return;
+            }
+
+            try {
+                const { data, error } = await window.supabaseClient
+                    .from('courses')
+                    .select('id,title,subject,grade_name,price_egp,is_published')
+                    .eq('is_published', true)
+                    .order('grade_name', { ascending: true });
+                if (error) throw error;
+
+                coursesData = (data || []).map(course => ({
+                    id: course.id,
+                    title: course.title,
+                    gradeName: `${course.title} — ${course.grade_name}`,
+                    subject: course.subject,
+                    price: `${Number(course.price_egp || 0).toLocaleString('ar-EG')} ج.م`,
+                    priceValue: Number(course.price_egp || 0),
+                    cat: String(course.grade_name || '').includes('إعدادي') ? 'prep' : 'sec',
+                    isFreeDemoAvailable: true,
+                    isPublished: course.is_published
+                }));
+
+                populatePaymentCourseOptions();
+                renderCourseCards();
+            } catch (error) {
+                console.error('Supabase courses load failed:', error);
+                if (grid) grid.innerHTML = '<div class="col-span-full rounded-2xl border border-red-500/30 bg-red-500/10 p-5 text-red-200">تعذّر تحميل المواد من قاعدة البيانات. راجع المفتاح العام وسياسة القراءة للكورسات المنشورة، ثم أعد المحاولة.</div>';
+            }
+        }
+
+        function populatePaymentCourseOptions() {
+            const select = document.getElementById('payGradeSelect');
+            if (!select) return;
+            const previousValue = select.value;
+            select.innerHTML = '';
+            coursesData.forEach(course => {
+                const option = document.createElement('option');
+                option.value = course.id;
+                option.textContent = `${course.title} — ${course.gradeName.split(' — ').slice(1).join(' — ')} (${course.price})`;
+                select.appendChild(option);
+            });
+            if (coursesData.some(course => course.id === previousValue)) select.value = previousValue;
+        }
+
+        // QUESTIONS STORAGE (LOAD FROM LOCAL STORAGE IF CUSTOM ADDED)
+        let customQuestionsStore = localStorage.getItem('shehata_custom_questions') 
+            ? JSON.parse(localStorage.getItem('shehata_custom_questions')) 
+            : {};
+
+        const defaultQuestions = {
+            '2sec': [
+                {
+                    id: 1,
+                    type: 'mcq',
+                    text: 'في الحركة الموجية، أقصى إزاحة يصل إليها جزيء الوسط بعيداً عن موضع اتزانه تسمى:',
+                    options: ['سعة الموجة', 'الطول الموجي', 'التردد', 'الزمن الدوري'],
+                    correct: 0
+                },
+                {
+                    id: 2,
+                    type: 'mcq',
+                    text: 'عند انتقال شعاع ضوئي من وسط أقل كثافة ضوئية إلى وسط أكبر كثافة ضوئية فإنه:',
+                    options: ['ينكسر مقترباً من العمود المقيم', 'ينكسر مبتعداً عن العمود المقيم', 'ينفذ دون أن يعاني أي انكسار', 'ينعكس كلياً'],
+                    correct: 0
+                },
+                {
+                    id: 3,
+                    type: 'azhar_reason',
+                    text: 'علل لما يأتي (سؤال أزهري): يفضل استخدام المنشور العاكس في الغواصات بدلاً من المرآة المستوية؟',
+                    options: ['لأن نسبة الانعكاس فيه تصل إلى 100% ولا يفقد بريقه', 'لأنه أرخص ثمنًا', 'لأنه يمتص الضوء بالكامل', 'لأنه يكبر الصور بشكل أضخم'],
+                    correct: 0
+                },
+                {
+                    id: 4,
+                    type: 'mcq',
+                    text: 'موجة صوتية ترددها 330 هرتز تنتشر في الهواء بسرعة 330 م/ث، يكون طولها الموجي مساوياً:',
+                    options: ['1 متر', '0.5 متر', '10 متر', '330 متر'],
+                    correct: 0
+                },
+                {
+                    id: 5,
+                    type: 'mcq',
+                    text: 'ما معنى أن: الزاوية الحرجة للزجاج مع الهواء تساوي 42°؟',
+                    options: [
+                        'أن زاوية السقوط في الزجاج التي تقابلها زاوية انكسار في الهواء مقدارها 90° تساوي 42°',
+                        'أن زاوية الانعكاس تساوي 42°',
+                        'أن الضوء ينفذ دائماً بزاوية 42°',
+                        'أن معامل الانكسار يساوي 42'
+                    ],
+                    correct: 0
+                }
+            ]
+        };
+
+        // MOCK TRANSACTIONS & CODES
+        let pendingTransactions = JSON.parse(localStorage.getItem('shehata_pending_transactions') || '[]');
+        let activeScratchCodes = JSON.parse(localStorage.getItem('shehata_active_codes') || '[]');
+
+        // INITIALIZATION
+        window.onload = async function() {
+            initializeSupabaseClient();
+            if (window.supabaseClient) {
+                const { data: { session } } = await window.supabaseClient.auth.getSession();
+                if (session?.user) {
+                    const u = session.user;
+                    currentUser = { id: u.id, name: u.user_metadata?.full_name || u.email.split('@')[0], email: u.email, grade: u.user_metadata?.grade || '2sec', activeGrades: [] };
+                    localStorage.setItem('shehata_student', JSON.stringify(currentUser));
+                }
+            }
+            updateNavUserBadge();
+            renderCourseCards();
+            setupSecurityGuards();
+            loadCoursesFromSupabase();
+        };
+
+        // NAVIGATION & SECTION SWITCHING
+        function showSection(sectionId) {
+            if (sectionId === 'admin' && !isAdminLoggedIn) {
+                showSection('adminLogin');
+                return;
+            }
+
+            const sections = ['homeSection', 'gradesSection', 'examSection', 'resultSection', 'adminSection', 'adminLoginSection'];
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.add('hidden');
+            });
+
+            if (sectionId === 'home') document.getElementById('homeSection').classList.remove('hidden');
+            else if (sectionId === 'grades') {
+                document.getElementById('gradesSection').classList.remove('hidden');
+                renderCourseCards();
+            }
+            else if (sectionId === 'exam') document.getElementById('examSection').classList.remove('hidden');
+            else if (sectionId === 'result') document.getElementById('resultSection').classList.remove('hidden');
+            else if (sectionId === 'admin') {
+                document.getElementById('adminSection').classList.remove('hidden');
+                renderAdminDashboard();
+            }
+            else if (sectionId === 'adminLogin') document.getElementById('adminLoginSection').classList.remove('hidden');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // COURSES & GRADES RENDER
+        function filterGradeCategory(cat) {
+            activeGradeCategory = cat;
+            document.getElementById('tabPrep').className = cat === 'prep' 
+                ? 'px-6 py-3 rounded-xl font-extrabold text-sm bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg transition border border-emerald-500/50' 
+                : 'px-6 py-3 rounded-xl font-extrabold text-sm bg-slate-800 hover:bg-slate-700 text-slate-300 transition border border-slate-700';
+            document.getElementById('tabSec').className = cat === 'sec' 
+                ? 'px-6 py-3 rounded-xl font-extrabold text-sm bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg transition border border-emerald-500/50' 
+                : 'px-6 py-3 rounded-xl font-extrabold text-sm bg-slate-800 hover:bg-slate-700 text-slate-300 transition border border-slate-700';
+            renderCourseCards();
+        }
+
+        function renderCourseCards() {
+            const grid = document.getElementById('coursesGrid');
+            grid.innerHTML = '';
+
+            const filtered = coursesData.filter(c => c.cat === activeGradeCategory);
+            filtered.forEach(course => {
+                const isActivated = false; // No local-only activation: access must be verified against secure enrollments on the server.
+                
+                const card = document.createElement('div');
+                card.className = 'glass-card glass-card-hover rounded-3xl p-7 space-y-5 flex flex-col justify-between';
+                card.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="bg-amber-500/10 text-amber-400 text-xs font-black px-3.5 py-1.5 rounded-full border border-amber-500/30">${course.subject}</span>
+                            <span class="text-sm font-black text-emerald-400 bg-emerald-950/60 px-3 py-1 rounded-lg border border-emerald-800/50">${course.price}</span>
+                        </div>
+                        <h3 class="text-2xl font-black text-white">${course.gradeName}</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed font-medium">يشمل بنك الأسئلة الشامل، الامتحانات التفاعلية، وشروحات النماذج الأزهرية والعامة.</p>
+                    </div>
+
+                    <div class="space-y-2.5 pt-2">
+                        ${isActivated ? `
+                            <button onclick="startExam('${course.id}')" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold py-3 rounded-xl text-xs transition shadow-lg flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-play"></i> دخول بنك الأسئلة والامتحان
+                            </button>
+                        ` : `
+                            <button onclick="openPaymentModal('${course.id}')" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black py-3 rounded-xl text-xs transition shadow-lg flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-lock"></i> اشترك وفعل الصف
+                            </button>
+                            <button onclick="startDemoExam('${course.id}')" class="w-full bg-slate-800 hover:bg-slate-700 text-amber-300 font-bold py-2.5 rounded-xl text-xs transition border border-slate-700 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-eye"></i> تجربة مجانية (Free Demo)
+                            </button>
+                        `}
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // EXAM ENGINE LOGIC
+        function startExam(gradeId, isDemo = false) {
+            demoMode = isDemo;
+            if (!isDemo && !currentUser) {
+                alert('برجاء تسجيل الدخول أولاً للبدء في الامتحان.');
+                openLoginModal();
+                return;
+            }
+
+            if (!isDemo && !(currentUser.activeGrades || []).includes(gradeId)) {
+                alert('هذا الصف غير مفعّل في حسابك. يمكنك تجربة النموذج المجاني أو إرسال طلب اشتراك.');
+                openPaymentModal(gradeId);
+                return;
+            }
+            currentExamData = customQuestionsStore[gradeId] || defaultQuestions[gradeId] || [];
+            if (isDemo && !currentExamData.length) currentExamData = defaultQuestions['2sec'] || [];
+            
+            if (!currentExamData || currentExamData.length === 0) {
+                alert('عذراً، لا توجد أسئلة متاحة لهذا الصف حالياً. يرجى تجربة صف آخر أو مراجعة الإدارة.');
+                return;
+            }
+
+            currentQuestionIndex = 0;
+            userAnswers = {};
+            flaggedQuestions = {};
+            tabSwitchCounter = 0;
+            document.getElementById('tabSwitchCount').innerText = '0';
+
+            setupWatermark(currentUser?.name || 'زائر', currentUser?.email || '');
+
+            timeRemainingSeconds = 20 * 60;
+            clearInterval(examTimerInterval);
+            examTimerInterval = setInterval(updateExamTimer, 1000);
+
+            showSection('exam');
+            renderCurrentQuestion();
+            renderQuestionPalette();
+        }
+
+        function startDemoExam(gradeId) {
+            startExam(gradeId, true);
+        }
+
+        function renderCurrentQuestion() {
+            const q = currentExamData[currentQuestionIndex];
+            document.getElementById('currentQNum').innerText = currentQuestionIndex + 1;
+            document.getElementById('totalQNum').innerText = currentExamData.length;
+            document.getElementById('questionText').innerText = q.text;
+
+            const container = document.getElementById('answersContainer');
+            container.innerHTML = '';
+
+            q.options.forEach((opt, idx) => {
+                const isSelected = userAnswers[currentQuestionIndex] === idx;
+                const btn = document.createElement('button');
+                btn.className = `w-full text-right p-4.5 rounded-2xl border text-sm font-bold transition-all duration-200 flex items-center justify-between ${
+                    isSelected 
+                        ? 'bg-emerald-950/90 border-emerald-500 text-emerald-200 shadow-lg shadow-emerald-950/50' 
+                        : 'bg-slate-900/80 border-slate-700/80 hover:border-slate-500 text-slate-200'
+                }`;
+                btn.onclick = () => selectAnswer(idx);
+                btn.innerHTML = `
+                    <span class="leading-relaxed">${opt}</span>
+                    <span class="w-6 h-6 rounded-full border-2 ${isSelected ? 'border-emerald-400 bg-emerald-500 text-slate-950' : 'border-slate-600'} flex items-center justify-center text-xs font-black shrink-0 mr-3">
+                        ${isSelected ? '✓' : ''}
+                    </span>
+                `;
+                container.appendChild(btn);
+            });
+
+            const flagBtn = document.getElementById('flagBtn');
+            if (flaggedQuestions[currentQuestionIndex]) {
+                flagBtn.className = 'bg-amber-500 text-slate-950 font-black px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 transition shadow-md';
+            } else {
+                flagBtn.className = 'bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 transition border border-slate-700';
+            }
+
+            document.getElementById('prevQBtn').disabled = currentQuestionIndex === 0;
+            document.getElementById('nextQBtn').innerText = currentQuestionIndex === currentExamData.length - 1 ? 'المعاينة والإنهاء' : 'التالي';
+        }
+
+        function selectAnswer(optIdx) {
+            userAnswers[currentQuestionIndex] = optIdx;
+            renderCurrentQuestion();
+            renderQuestionPalette();
+        }
+
+        function navigateQuestion(direction) {
+            const nextIdx = currentQuestionIndex + direction;
+            if (nextIdx >= 0 && nextIdx < currentExamData.length) {
+                currentQuestionIndex = nextIdx;
+                renderCurrentQuestion();
+            } else if (nextIdx >= currentExamData.length) {
+                confirmSubmitExam();
+            }
+        }
+
+        function toggleFlagCurrentQuestion() {
+            flaggedQuestions[currentQuestionIndex] = !flaggedQuestions[currentQuestionIndex];
+            renderCurrentQuestion();
+            renderQuestionPalette();
+        }
+
+        function renderQuestionPalette() {
+            const palette = document.getElementById('questionPaletteGrid');
+            palette.innerHTML = '';
+
+            currentExamData.forEach((_, idx) => {
+                const isAnswered = userAnswers[idx] !== undefined;
+                const isFlagged = flaggedQuestions[idx];
+                const isCurrent = idx === currentQuestionIndex;
+
+                let bgClass = 'bg-slate-900 border border-slate-700 text-slate-300';
+                if (isAnswered) bgClass = 'bg-emerald-600 text-white font-bold border-emerald-500';
+                if (isFlagged) bgClass = 'bg-amber-500 text-slate-950 font-black border-amber-400';
+
+                const btn = document.createElement('button');
+                btn.className = `w-10 h-10 rounded-xl font-extrabold text-xs flex items-center justify-center transition-all ${bgClass} ${isCurrent ? 'ring-2 ring-amber-400 scale-110 shadow-lg' : ''}`;
+                btn.innerText = idx + 1;
+                btn.onclick = () => {
+                    currentQuestionIndex = idx;
+                    renderCurrentQuestion();
+                };
+                palette.appendChild(btn);
+            });
+        }
+
+        function updateExamTimer() {
+            timeRemainingSeconds--;
+            if (timeRemainingSeconds <= 0) {
+                clearInterval(examTimerInterval);
+                alert('انتهى الوقت المخصص للامتحان! سيتم تسليم إجاباتك تلقائياً.');
+                submitExam();
+                return;
+            }
+
+            const mins = Math.floor(timeRemainingSeconds / 60);
+            const secs = timeRemainingSeconds % 60;
+            document.getElementById('examTimer').innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function confirmSubmitExam() {
+            if (confirm('هل أنت تأكد من إنهاء وتسليم الامتحان الآن؟')) {
+                submitExam();
+            }
+        }
+
+        function submitExam() {
+            clearInterval(examTimerInterval);
+            removeWatermark();
+
+            if (!currentExamData || currentExamData.length === 0) {
+                alert('حدث خطأ أثناء تحميل أسئلة الامتحان.');
+                showSection('grades');
+                return;
+            }
+
+            let correctCount = 0;
+            currentExamData.forEach((q, idx) => {
+                if (userAnswers[idx] === q.correct) correctCount++;
+            });
+
+            const percentage = Math.min(100, Math.max(0, Math.round((correctCount / currentExamData.length) * 100)));
+
+            document.getElementById('resultStudentName').innerText = `الطالب: ${currentUser ? currentUser.name : 'زائر'}`;
+            document.getElementById('finalScoreText').innerText = `${percentage}%`;
+            document.getElementById('scoreSubText').innerText = `حصلت على ${correctCount} درجة من أصل ${currentExamData.length}`;
+            document.getElementById('scoreProgressBar').style.width = `${percentage}%`;
+            const resultRecord = { student: currentUser ? currentUser.name : 'زائر', grade: currentUser?.grade || 'غير محدد', score: correctCount, total: currentExamData.length, percentage, date: new Date().toISOString(), demo: demoMode };
+            examResults.push(resultRecord);
+            localStorage.setItem('shehata_exam_results', JSON.stringify(examResults));
+
+            showSection('result');
+        }
+
+        // QUESTION BANK MANAGEMENT
+        function importQuestionsFromFile() {
+            const grade = document.getElementById('importGradeSelect').value;
+            const fileInput = document.getElementById('jsonFileInput');
+
+            if (!fileInput.files || fileInput.files.length === 0) {
+                alert('برجاء اختيار ملف JSON من جهازك أولاً.');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const parsedQuestions = JSON.parse(e.target.result);
+                    if (Array.isArray(parsedQuestions)) {
+                        customQuestionsStore[grade] = parsedQuestions;
+                        localStorage.setItem('shehata_custom_questions', JSON.stringify(customQuestionsStore));
+                        alert(`تمت إضافة وتحديث (${parsedQuestions.length}) سؤال بنجاح للصف المحدد!`);
+                        fileInput.value = '';
+                    } else {
+                        alert('صيغة الملف غير صحيحة. يجب أن يحتوي الملف على قائمة أسئلة (Array).');
+                    }
+                } catch (err) {
+                    alert('حدث خطأ في قراءة الملف. تأكد من أن الملف بصيغة JSON سليمة.');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function importQuestionsFromText() {
+            const grade = document.getElementById('importGradeSelect').value;
+            const jsonText = document.getElementById('jsonTextInput').value.trim();
+
+            if (!jsonText) {
+                alert('برجاء لصق كود الأسئلة أولاً.');
+                return;
+            }
+
+            try {
+                const parsedQuestions = JSON.parse(jsonText);
+                if (Array.isArray(parsedQuestions)) {
+                    customQuestionsStore[grade] = parsedQuestions;
+                    localStorage.setItem('shehata_custom_questions', JSON.stringify(customQuestionsStore));
+                    alert(`تمت إضافة (${parsedQuestions.length}) سؤال بنجاح للمرحلة!`);
+                    document.getElementById('jsonTextInput').value = '';
+                } else {
+                    alert('الصيغة الملصوقة يجب أن تكون قائمة أسئلة (Array).');
+                }
+            } catch (err) {
+                alert('حدث خطأ أثناء قراءة الكود. تأكد من صحة تنسيق الـ JSON.');
+            }
+        }
+
+        function downloadQuestionsSampleJSON() {
+            const sample = [
+                {
+                    "id": 1,
+                    "type": "mcq",
+                    "text": "وحدة قياس شدة التيار الكهربي في النظام الدولي هي:",
+                    "options": ["الأمبير", "الفولت", "الأوم", "الكولوم"],
+                    "correct": 0
+                },
+                {
+                    "id": 2,
+                    "type": "mcq",
+                    "text": "تتوقف السرعة المدارية للقمر الصناعي على:",
+                    "options": ["كتلة الأرض وارتفاع القمر", "كتلة القمر فقط", "زمن دوران الأرض", "درجة الحرارة"],
+                    "correct": 0
+                }
+            ];
+
+            const blob = new Blob([JSON.stringify(sample, null, 2)], { type: 'application/json' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'sample_questions_shehata.json';
+            link.click();
+        }
+
+        // SECURITY GUARDS
+        function setupSecurityGuards() {
+            document.addEventListener('visibilitychange', function() {
+                const examSection = document.getElementById('examSection');
+                if (!examSection.classList.contains('hidden')) {
+                    tabSwitchCounter++;
+                    document.getElementById('tabSwitchCount').innerText = tabSwitchCounter;
+                    if (tabSwitchCounter >= 3) {
+                        alert('تنبيه هام: تم رصد الخروج من شاشة الامتحان أكثر من 3 مرات! تم إنهاء الامتحان تلقائياً مراعاة للنزاهة.');
+                        submitExam();
+                    } else {
+                        alert(`تنبيه من مراقب المنصة: لا يُسمح بالخروج من صفحة الامتحان! المحاولة (${tabSwitchCounter}/3)`);
+                    }
+                }
+            });
+
+        }
+
+        function setupWatermark(name, phone) {
+            const layer = document.getElementById('watermarkLayer');
+            layer.innerHTML = '';
+            layer.classList.remove('hidden');
+
+            for (let i = 0; i < 20; i++) {
+                const span = document.createElement('span');
+                span.className = 'watermark-text';
+                span.innerText = `${name || 'طالب أزهري'} - ${phone || '010XXXXXXXX'}`;
+                layer.appendChild(span);
+            }
+        }
+
+        function removeWatermark() {
+            const layer = document.getElementById('watermarkLayer');
+            layer.classList.add('hidden');
+            layer.innerHTML = '';
+        }
+
+        // PAYMENT & USER LOGIN MODALS
+        function openPaymentModal(gradeId) {
+            if (gradeId) document.getElementById('payGradeSelect').value = gradeId;
+            document.getElementById('paymentModal').classList.remove('hidden');
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.add('hidden');
+        }
+
+        function switchPaymentTab(tab) {
+            if (tab === 'wallet') {
+                document.getElementById('payWalletPanel').classList.remove('hidden');
+                document.getElementById('payCodePanel').classList.add('hidden');
+                document.getElementById('payTabWallet').className = 'flex-1 py-2.5 font-extrabold text-xs text-amber-400 border-b-2 border-amber-400';
+                document.getElementById('payTabCode').className = 'flex-1 py-2.5 font-extrabold text-xs text-slate-400 border-b-2 border-transparent';
+            } else {
+                document.getElementById('payWalletPanel').classList.add('hidden');
+                document.getElementById('payCodePanel').classList.remove('hidden');
+                document.getElementById('payTabWallet').className = 'flex-1 py-2.5 font-extrabold text-xs text-slate-400 border-b-2 border-transparent';
+                document.getElementById('payTabCode').className = 'flex-1 py-2.5 font-extrabold text-xs text-amber-400 border-b-2 border-amber-400';
+            }
+        }
+
+        function submitPaymentRequest() {
+            const phone = document.getElementById('paySenderPhone').value.trim();
+            const ref = document.getElementById('payRefNumber').value.trim();
+            const grade = document.getElementById('payGradeSelect').value;
+
+            if (!phone || !ref) {
+                alert('برجاء كتابة رقم الهاتف المٌحوّل منه والرقم المرجعي للإيصال.');
+                return;
+            }
+
+            pendingTransactions.push({
+                id: Date.now(),
+                student: currentUser ? currentUser.name : 'طالب جديد',
+                phone: phone,
+                grade: grade,
+                amount: (coursesData.find(c => c.id === grade)?.price || 'غير محدد'),
+                ref: ref,
+                status: 'pending'
+            });
+            localStorage.setItem('shehata_pending_transactions', JSON.stringify(pendingTransactions));
+
+            alert('تم حفظ طلب الاشتراك على هذا الجهاز في النسخة التجريبية. لن يتم تفعيل الصف تلقائيًا؛ يلزم ربط قاعدة بيانات آمنة لمراجعته عبر الإدارة.');
+            closePaymentModal();
+        }
+
+        function redeemScratchCode() {
+            alert('تفعيل أكواد الشحن غير متاح في النسخة التجريبية؛ الأكواد المخزنة داخل HTML ليست آمنة. سيتم تفعيلها بعد ربط قاعدة بيانات وخدمة تحقق من جهة الخادم.');
+        }
+
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+        }
+
+        let studentAuthMode = 'signup';
+
+        function toggleStudentAuthMode() {
+            studentAuthMode = studentAuthMode === 'signup' ? 'signin' : 'signup';
+            const isSignup = studentAuthMode === 'signup';
+            document.getElementById('authTitle').textContent = isSignup ? 'إنشاء حساب طالب' : 'تسجيل دخول الطالب';
+            document.getElementById('authSubmitButton').textContent = isSignup ? 'إنشاء الحساب' : 'تسجيل الدخول';
+            document.getElementById('authModeButton').textContent = isSignup ? 'عندك حساب بالفعل؟ سجّل دخولك' : 'لسه معندكش حساب؟ أنشئ حساب جديد';
+            document.getElementById('authNameWrap').classList.toggle('hidden', !isSignup);
+            document.getElementById('authGradeWrap').classList.toggle('hidden', !isSignup);
+            document.getElementById('loginPasswordInput').setAttribute('autocomplete', isSignup ? 'new-password' : 'current-password');
+        }
+
+        async function submitStudentAuth() {
+            const email = document.getElementById('loginEmailInput').value.trim().toLowerCase();
+            const password = document.getElementById('loginPasswordInput').value;
+            const name = document.getElementById('loginNameInput').value.trim();
+            const grade = document.getElementById('loginGradeSelect').value;
+
+            if (!initializeSupabaseClient()) {
+                alert('قاعدة البيانات غير مربوطة بالمفتاح العام. أضف مفتاح sb_publishable الخاص بمشروعك في إعدادات الكود.');
+                return;
+            }
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert('اكتب بريدًا إلكترونيًا صحيحًا.'); return;
+            }
+            if (password.length < 8) { alert('كلمة المرور لازم تكون ٨ أحرف على الأقل.'); return; }
+
+            const button = document.getElementById('authSubmitButton');
+            button.disabled = true;
+            const oldText = button.textContent;
+            button.textContent = 'جاري التنفيذ...';
+            try {
+                let result;
+                if (studentAuthMode === 'signup') {
+                    if (!name) { alert('اكتب اسم الطالب بالكامل.'); return; }
+                    result = await window.supabaseClient.auth.signUp({
+                        email, password,
+                        options: { data: { full_name: name, grade } }
+                    });
+                } else {
+                    result = await window.supabaseClient.auth.signInWithPassword({ email, password });
+                }
+                if (result.error) throw result.error;
+                const user = result.data.user;
+                const session = result.data.session;
+                if (!session) {
+                    alert('تم إنشاء الحساب. افتح بريدك الإلكتروني واضغط رابط التأكيد، ثم ارجع وسجّل الدخول.');
+                    toggleStudentAuthMode();
+                    return;
+                }
+                const metadata = user.user_metadata || {};
+                currentUser = {
+                    id: user.id,
+                    name: metadata.full_name || name || email.split('@')[0],
+                    email: user.email,
+                    grade: metadata.grade || grade || '2sec',
+                    activeGrades: Array.isArray(currentUser?.activeGrades) ? currentUser.activeGrades : []
+                };
+                localStorage.setItem('shehata_student', JSON.stringify(currentUser));
+                updateNavUserBadge();
+                closeLoginModal();
+                alert(`أهلاً بك يا ${currentUser.name} في منصة العلم والإيمان!`);
+            } catch (error) {
+                console.error('Student authentication error:', error);
+                const message = error?.message || 'حصل خطأ غير متوقع.';
+                alert('تعذر إكمال العملية: ' + message);
+            } finally {
+                button.disabled = false;
+                button.textContent = oldText;
+            }
+        }
+
+        function updateNavUserBadge() {
+            const area = document.getElementById('navUserArea');
+            if (currentUser) {
+                area.innerHTML = `
+                    <div class="flex items-center gap-2 bg-slate-900 border border-slate-700/80 px-3.5 py-2 rounded-xl shadow-inner">
+                        <i class="fa-solid fa-user-graduate text-emerald-400"></i>
+                        <span class="text-xs font-black text-white">${currentUser.name}</span>
+                        <button onclick="logoutStudent()" class="text-slate-400 hover:text-red-400 text-xs mr-2 transition"><i class="fa-solid fa-power-off"></i></button>
+                    </div>
+                `;
+            }
+        }
+
+        async function logoutStudent() {
+            if (window.supabaseClient) await window.supabaseClient.auth.signOut();
+            currentUser = null;
+            localStorage.removeItem('shehata_student');
+            currentUser = null;
+            location.reload();
+        }
+
+        // ADMIN FUNCTIONS
+        function verifyAdminLogin() {
+            const passInput = document.getElementById('adminPassInput').value;
+            if (!adminPassword) {
+                if (passInput.length < 10) { alert('لإنشاء كلمة مرور محلية تجريبية، أدخل كلمة مرور من 10 أحرف على الأقل. تنبيه: هذا ليس بديلًا عن تسجيل دخول آمن على الخادم.'); return; }
+                adminPassword = passInput;
+                localStorage.setItem('shehata_admin_pass', adminPassword);
+                alert('تم حفظ كلمة المرور على هذا المتصفح فقط. لا تستخدم هذا النظام للإدارة الحقيقية قبل ربط مصادقة خادمية.');
+            }
+            if (passInput === adminPassword) {
+                isAdminLoggedIn = true;
+                document.getElementById('adminPassInput').value = '';
+                showSection('admin');
+            } else {
+                alert('كلمة المرور خاطئة! يرجى المحاولة مرة أخرى.');
+            }
+        }
+
+        function logoutAdmin() {
+            isAdminLoggedIn = false;
+            showSection('home');
+            alert('تم تسجيل الخروج من لوحة الأدمن بنجاح.');
+        }
+
+        function changeAdminPassword() {
+            const newPass = prompt('أدخل كلمة المرور الجديدة للوحة التحكم:');
+            if (newPass && newPass.trim().length >= 4) {
+                adminPassword = newPass.trim();
+                localStorage.setItem('shehata_admin_pass', adminPassword);
+                alert('تم تغيير كلمة المرور بنجاح وحفظها!');
+            } else if (newPass !== null) {
+                alert('كلمة المرور يجب أن تكون 4 أحرف/أرقام على الأقل.');
+            }
+        }
+
+        function renderAdminDashboard() {
+            const table = document.getElementById('adminPendingTable');
+            table.innerHTML = '';
+
+            pendingTransactions.forEach(tx => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-800/50 transition';
+                tr.innerHTML = `
+                    <td class="p-3.5 font-bold text-white">${tx.student}</td>
+                    <td class="p-3.5 text-amber-400 font-mono font-bold">${tx.phone}</td>
+                    <td class="p-3.5">${tx.grade}</td>
+                    <td class="p-3.5 text-emerald-400 font-black">${tx.amount}</td>
+                    <td class="p-3.5 font-mono text-slate-300">${tx.ref}</td>
+                    <td class="p-3.5 text-center space-x-2 space-x-reverse">
+                        <button onclick="approveTransaction(${tx.id})" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-3 py-1.5 rounded-lg text-[11px] transition shadow">
+                            تفعيل 🟢
+                        </button>
+                        <button onclick="rejectTransaction(${tx.id})" class="bg-red-600 hover:bg-red-500 text-white font-extrabold px-3 py-1.5 rounded-lg text-[11px] transition shadow">
+                            رفض 🔴
+                        </button>
+                    </td>
+                `;
+                table.appendChild(tr);
+            });
+
+            document.getElementById('adminPendingCount').innerText = `${pendingTransactions.length} طلبات`;
+            document.getElementById('adminCodesCount').innerText = `${activeScratchCodes.length} كود`;
+        }
+
+        function approveTransaction(id) {
+            const tx = pendingTransactions.find(t => t.id === id);
+            if (!tx) return;
+            alert('تمت مراجعة الطلب محليًا فقط. ربط الطلب بحساب الطالب وتفعيل الصف بأمان يحتاج إلى قاعدة بيانات وخادم؛ لذلك لم يتم تفعيل الحساب.');
+        }
+
+        function rejectTransaction(id) {
+            pendingTransactions = pendingTransactions.filter(t => t.id !== id);
+            localStorage.setItem('shehata_pending_transactions', JSON.stringify(pendingTransactions));
+            renderAdminDashboard();
+        }
+
+        function generateScratchCodes() {
+            const count = parseInt(document.getElementById('genCountInput').value) || 5;
+            const output = document.getElementById('generatedCodesOutput');
+            output.innerHTML = '<strong>الأكواد التي تم توليدها:</strong><br>';
+
+            for (let i = 0; i < count; i++) {
+                const randomStr = Math.random().toString(36).substring(2, 8).toUpperCase();
+                const code = `PHYS-2026-${randomStr}`;
+                activeScratchCodes.push(code);
+                output.innerHTML += `<div class="py-0.5">${code}</div>`;
+            }
+
+            output.classList.remove('hidden');
+            document.getElementById('adminCodesCount').innerText = `${activeScratchCodes.length} كود`;
+        }
+
+        // STUDENT REPORT EXPORT
+        function sendParentWhatsAppReport() {
+            const studentName = currentUser ? currentUser.name : 'الطالب';
+            const score = document.getElementById('finalScoreText').innerText;
+            const text = `تقرير الطالب: ${studentName}%0Aدرجة الامتحان: ${score}%0Aتم الاختبار عبر منصة العلم والإيمان التعليمية.`;
+            window.open(`https://wa.me/?text=${text}`, '_blank');
+        }
+
+
+        // UTILS
+        function copyToClipboard(text) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    alert(`تم نسخ: ${text}`);
+                }).catch(() => {
+                    fallbackCopyTextToClipboard(text);
+                });
+            } else {
+                fallbackCopyTextToClipboard(text);
+            }
+        }
+
+        function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                alert(`تم نسخ: ${text}`);
+            } catch (err) {
+                alert('تعذر النسخ التلقائي، يمكنك نسخ الرقم يدويًا: ' + text);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function toggleDarkMode() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            const icon = document.getElementById('themeToggleIcon');
+
+            if (isDark) {
+                icon.className = 'fa-solid fa-moon text-amber-400 text-sm transition-all duration-300';
+            } else {
+                icon.className = 'fa-solid fa-sun text-amber-500 text-sm transition-all duration-300';
+            }
+        }
+    </script>
+</body>
+</html>
