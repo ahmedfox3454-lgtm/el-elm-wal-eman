@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة العلم والإيمان التعليمية | شحاته أحمد</title>
+    <title>مستر شحاته أحمد</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -182,7 +182,7 @@
                 </div>
                 <div class="flex flex-col justify-center">
                     <h1 class="text-lg md:text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-emerald-400 leading-tight">منصة العلم والإيمان</h1>
-                    <p class="text-[11px] md:text-xs text-slate-400 font-semibold mt-0.5">منصة تعليمية لطلاب الأزهر والتعليم العام</p>
+                    <p class="text-[11px] md:text-xs text-slate-400 font-semibold mt-0.5">منصة متخصصة في الفيزياء والعلوم</p>
                 </div>
             </div>
 
@@ -231,7 +231,7 @@
                             الشرح المبسط والنظام الحديث <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-emerald-400">لطلاب الثانوية والإعدادية</span>
                         </h2>
                         <p class="text-slate-300 text-base md:text-lg leading-relaxed font-medium">
-                            تغطية كاملة للمناهج العامة والأزهرية، بنوك أسئلة تفاعلية، امتحانات محاكية مع مراقبة النزاهة، وشهادات تقدير فورية فور التفوق!
+                            شرح الفيزياء للمرحلة الثانوية والعلوم للمرحلة الإعدادية، مع اختبارات تفاعلية وإحصائيات لمتابعة الاستماع والتقدم الدراسي.
                         </p>
                         <div class="flex flex-wrap gap-4 pt-2">
                             <button onclick="showSection('grades')" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold px-8 py-4 rounded-2xl shadow-xl shadow-emerald-950/50 transition transform hover:-translate-y-1 flex items-center gap-2">
@@ -240,7 +240,7 @@
                             </button>
                             <button onclick="openPaymentModal()" class="glass-card hover:bg-slate-700/50 text-amber-400 font-extrabold px-7 py-4 rounded-2xl transition border border-amber-500/30 flex items-center gap-2">
                                 <i class="fa-solid fa-bolt text-amber-400"></i>
-                                <span>اشترك وفعل حسابك</span>
+                                <span>الدروس والاختبارات</span>
                             </button>
                         </div>
                     </div>
@@ -265,8 +265,8 @@
                             <div class="w-12 h-12 mx-auto bg-amber-500/10 rounded-xl flex items-center justify-center mb-3">
                                 <i class="fa-solid fa-award text-2xl text-amber-400"></i>
                             </div>
-                            <div class="text-3xl font-black text-white">قيد الإعداد</div>
-                            <div class="text-xs font-bold text-slate-400 mt-1">مراجعة المناهج</div>
+                            <div class="text-3xl font-black text-white">تقدّمك</div>
+                            <div class="text-xs font-bold text-slate-400 mt-1">متابعة مستواك الدراسي</div>
                         </div>
                         <div class="glass-card p-6 rounded-2xl text-center glass-card-hover">
                             <div class="w-12 h-12 mx-auto bg-emerald-500/10 rounded-xl flex items-center justify-center mb-3">
@@ -285,32 +285,62 @@
                     <div class="w-14 h-14 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center text-2xl font-bold border border-emerald-500/20">
                         <i class="fa-solid fa-bolt"></i>
                     </div>
-                    <h3 class="text-xl font-extrabold text-white">تفعيل أوتوماتيكي سريع</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">ادفع عبر فودافون كاش أو إنستا باي أو استخدم كروت الشحن ليفتح حسابك فوراً دون انتظار.</p>
+                    <h3 class="text-xl font-extrabold text-white">متابعة تقدمك</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">تابع عدد الاختبارات التي أنهيتها ونتائجك وتقدّمك في الدروس من لوحة إحصائياتك.</p>
                 </div>
 
                 <div class="glass-card p-8 rounded-3xl glass-card-hover space-y-3">
                     <div class="w-14 h-14 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center text-2xl font-bold border border-emerald-500/20">
                         <i class="fa-solid fa-vial-circle-check"></i>
                     </div>
-                    <h3 class="text-xl font-extrabold text-white">تجربة مجانية Demo</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">يمكنك تجربة نماذج الامتحانات ومعاينة بنك الأسئلة مجاناً قبل اتخاذ قرار الاشتراك.</p>
+                    <h3 class="text-xl font-extrabold text-white">اختبارات تدريبية</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">تدرّب على أسئلة الفيزياء والعلوم وسجّل وقت الاستماع للدروس لمتابعة انتظامك.</p>
                 </div>
             </div>
+
+            <!-- STUDENT PROGRESS & LISTENING STATISTICS -->
+            <section class="glass-card rounded-3xl p-6 md:p-8 space-y-6" aria-labelledby="progressTitle">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                        <h3 id="progressTitle" class="text-2xl font-black text-white">إحصائياتي ومستوى تقدمي</h3>
+                        <p class="text-sm text-slate-400 mt-1">تابع الاختبارات والاستماع للدروس من هذا الجهاز.</p>
+                    </div>
+                    <button onclick="showSection('grades')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2 rounded-xl text-sm">ابدأ التعلّم</button>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-5"><p class="text-xs text-slate-400">مرات الاستماع</p><strong id="listeningSessionsStat" class="block text-3xl text-emerald-400 mt-2">0</strong></div>
+                    <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-5"><p class="text-xs text-slate-400">وقت الاستماع</p><strong id="listeningMinutesStat" class="block text-3xl text-amber-400 mt-2">0 دقيقة</strong></div>
+                    <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-5"><p class="text-xs text-slate-400">الاختبارات المنتهية</p><strong id="completedExamsStat" class="block text-3xl text-blue-400 mt-2">0</strong></div>
+                    <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-5"><p class="text-xs text-slate-400">متوسط الدرجات</p><strong id="averageScoreStat" class="block text-3xl text-purple-400 mt-2">—</strong></div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm font-bold mb-2"><span>مستوى التقدم في الاختبارات</span><span id="progressPercentLabel">0%</span></div>
+                    <div class="h-3 rounded-full bg-slate-800 overflow-hidden"><div id="learningProgressBar" class="h-full rounded-full bg-gradient-to-r from-emerald-500 to-amber-400" style="width:0%"></div></div>
+                    <p id="progressTip" class="text-xs text-slate-400 mt-3">ابدأ بأول اختبار أو استمع لدرس لتظهر إحصائياتك هنا.</p>
+                </div>
+                <div class="border-t border-slate-700 pt-5 space-y-3">
+                    <h4 class="font-extrabold text-white">تسجيل الاستماع لدرس</h4>
+                    <p class="text-xs text-slate-400">لو بتسمع شرحًا خارج المنصة، سجّل المدة يدويًا. عند إضافة مشغلات صوت داخل المنصة سيتم احتسابها تلقائيًا.</p>
+                    <div class="flex flex-wrap gap-3 items-center">
+                        <input id="listenedMinutesInput" type="number" min="1" max="600" value="15" class="w-28 bg-slate-900 border border-slate-700 rounded-xl p-3 text-white" aria-label="مدة الاستماع بالدقائق">
+                        <button onclick="recordListeningSession()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-5 py-3 rounded-xl text-sm">سجّل جلسة استماع</button>
+                    </div>
+                </div>
+            </section>
         </section>
 
         <!-- SECTION 2: GRADES & COURSES SELECTOR -->
         <section id="gradesSection" class="hidden space-y-8">
             <div class="text-center space-y-3 max-w-2xl mx-auto">
                 <span class="text-emerald-400 font-bold text-xs uppercase tracking-widest bg-emerald-500/10 px-4 py-1.5 rounded-full border border-emerald-500/20">المراحل الدراسية</span>
-                <h2 class="text-3xl md:text-4xl font-black text-white">اختر مرحلتك الدراسية (2026 / 2027)</h2>
-                <p class="text-slate-400 text-sm">استعرض المناهج المتاحة والامتحانات التفاعلية الخاصة بكل صف دراسي</p>
+                <h2 class="text-3xl md:text-4xl font-black text-white">اختر مرحلتك ومادتك (2026 / 2027)</h2>
+                <p class="text-slate-400 text-sm">فيزياء للمرحلة الثانوية وعلوم للمرحلة الإعدادية</p>
             </div>
 
             <!-- Tabs Grade Filter -->
             <div class="flex justify-center border-b border-slate-800 pb-4 gap-3 flex-wrap">
-                <button onclick="filterGradeCategory('prep')" id="tabPrep" class="px-6 py-3 rounded-xl font-extrabold text-sm bg-slate-800 hover:bg-slate-700 text-slate-300 transition border border-slate-700">المرحلة الإعدادية (علوم)</button>
-                <button onclick="filterGradeCategory('sec')" id="tabSec" class="px-6 py-3 rounded-xl font-extrabold text-sm bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg transition border border-emerald-500/50">المرحلة الثانوية (فيزياء)</button>
+                <button onclick="filterGradeCategory('prep')" id="tabPrep" class="px-6 py-3 rounded-xl font-extrabold text-sm bg-slate-800 hover:bg-slate-700 text-slate-300 transition border border-slate-700">المرحلة الإعدادية — علوم</button>
+                <button onclick="filterGradeCategory('sec')" id="tabSec" class="px-6 py-3 rounded-xl font-extrabold text-sm bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg transition border border-emerald-500/50">المرحلة الثانوية — فيزياء</button>
             </div>
 
             <!-- Course Cards Grid -->
@@ -325,7 +355,7 @@
             <div class="glass-card rounded-2xl p-5 flex flex-wrap items-center justify-between gap-4 sticky top-24 z-30 shadow-2xl border-amber-500/30">
                 <div>
                     <h3 id="examTitleHeader" class="text-xl font-black text-amber-400">اختبار الفيزياء التفاعلي</h3>
-                    <p id="examSubHeader" class="text-xs font-bold text-slate-400 mt-1">الصف الثاني الثانوي - الأزهري والعام</p>
+                    <p id="examSubHeader" class="text-xs font-bold text-slate-400 mt-1">الفيزياء — المرحلة الثانوية</p>
                 </div>
                 
                 <div class="flex items-center gap-4">
@@ -449,7 +479,7 @@
                     </div>
                     <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 space-y-1">
                         <div class="text-emerald-400 font-bold flex items-center gap-1.5"><i class="fa-solid fa-lightbulb"></i> نصيحة المراجعة</div>
-                        <p class="text-slate-300" id="adviceAnalysisText">راجع التعليلات الخاصة بأسئلة الأزهر لضمان الدرجة النهائية.</p>
+                        <p class="text-slate-300" id="adviceAnalysisText">راجع القوانين والمفاهيم التي أخطأت فيها لضمان تحسن مستواك.</p>
                     </div>
                     <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 space-y-1">
                         <div class="text-blue-400 font-bold flex items-center gap-1.5"><i class="fa-solid fa-clock"></i> إدارة الوقت</div>
@@ -532,7 +562,7 @@
                 <div class="grid md:grid-cols-2 gap-6">
                     <!-- File Upload Input -->
                     <div class="space-y-3">
-                        <label class="block text-xs font-bold text-slate-300">اختر الصف الدراسي للملف:</label>
+                        <label class="block text-xs font-bold text-slate-300">اختر الصف والمادة للملف:</label>
                         <select id="importGradeSelect" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white">
                             <option value="1prep">الصف الأول الإعدادي (علوم)</option>
                             <option value="2prep">الصف الثاني الإعدادي (علوم)</option>
@@ -629,7 +659,7 @@
             </button>
 
             <div class="text-center space-y-2">
-                <h3 class="text-2xl font-black text-amber-400">اشتراك وتفعيل الحساب</h3>
+                <h3 class="text-2xl font-black text-amber-400">الدروس والاختبارات</h3>
                 <p class="text-xs text-slate-400 font-semibold">اختر طريقة الاشتراك المناسبة لك لتنشيط المنصة</p>
             </div>
 
@@ -669,11 +699,11 @@
                     <div>
                         <label class="block text-slate-300 font-bold mb-1.5">الصف الدراسي</label>
                         <select id="payGradeSelect" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white">
-                            <option value="1prep">أولى إعدادي (علوم) - 75 ج.م</option>
-                            <option value="2prep">ثانية إعدادي (علوم) - 75 ج.م</option>
-                            <option value="3prep">ثالثة إعدادي (علوم) - 85 ج.م</option>
-                            <option value="1sec">أولى ثانوي (فيزياء) - 100 ج.م</option>
-                            <option value="2sec" selected>ثانية ثانوي (فيزياء) - 100 ج.م</option>
+                            <option value="1prep">أولى إعدادي (علوم)</option>
+                            <option value="2prep">ثانية إعدادي (علوم)</option>
+                            <option value="3prep">ثالثة إعدادي (علوم)</option>
+                            <option value="1sec">أولى ثانوي (فيزياء)</option>
+                            <option value="2sec" selected>ثانية ثانوي (فيزياء)</option>
                         </select>
                     </div>
                 </div>
@@ -745,17 +775,18 @@
 
     <div class="max-w-7xl w-full mx-auto px-4 pb-6">
         <div class="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-4 text-sm text-amber-200 leading-relaxed">
-            <strong>تنبيه النسخة التجريبية:</strong> سيتم جلب قائمة الكورسات المنشورة من Supabase بعد إعداد المفتاح العام. تسجيل الدخول والاشتراكات وحفظ نتائج الامتحانات ما زالت تحتاج ربطًا آمنًا بالخادم؛ لا تستخدم النسخة لاستقبال بيانات أو مدفوعات حقيقية.
+            <strong>حالة الربط:</strong> تسجيل الحسابات يتم عبر Supabase Auth، وتُحفظ نتائج الاختبارات وجلسات الاستماع في قاعدة البيانات بعد تشغيل ملف SQL المرفق وتفعيل سياسات الأمان. المدفوعات وصلاحيات الإدارة تحتاج إعدادًا مستقلًا قبل استقبال أموال حقيقية.
         </div>
     </div>
 
     <!-- Footer -->
     <footer class="bg-slate-950 border-t border-slate-800/80 py-10 text-center text-xs text-slate-500 mt-auto">
         <div class="max-w-7xl mx-auto px-4 space-y-4">
-            <p class="font-extrabold text-slate-400">منصة العلم والإيمان للأستاذ شحاته أحمد © 2026 / 2027 م</p>
-            <p>جميع الحقوق محفوظة - مخصصة لطلاب الثانوية الأزهرية والعامة في جمهورية مصر العربية</p>
+            <p class="font-extrabold text-slate-400">منصة العلم والإيمان للفيزياء والعلوم — الأستاذ شحاته أحمد © 2026 / 2027 م</p>
+            <p>جميع الحقوق محفوظة - مخصصة لطلاب المرحلة الإعدادية والثانوية في جمهورية مصر العربية</p>
 
             <p class="text-sm text-slate-500">إشراف وملكية المحتوى: الأستاذ شحاته أحمد</p>
+            <p class="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-4 py-2 text-sm font-bold text-emerald-300"><i class="fa-solid fa-code"></i> تم التطوير بواسطة <span class="text-amber-300">Ahmed</span></p>
         </div>
     </footer>
 
@@ -812,18 +843,23 @@
                     .order('grade_name', { ascending: true });
                 if (error) throw error;
 
-                coursesData = (data || []).map(course => ({
-                    id: course.id,
-                    title: course.title,
-                    gradeName: `${course.title} — ${course.grade_name}`,
-                    subject: course.subject,
-                    price: `${Number(course.price_egp || 0).toLocaleString('ar-EG')} ج.م`,
+                const scienceRows = (data || []).filter(course => /فيزياء|علوم|physics|science/i.test(`${course.subject || ''} ${course.title || ''}`));
+                coursesData = scienceRows.map(course => ({
+                    id: course.id, title: course.title, gradeName: `${course.title} — ${course.grade_name}`,
+                    subject: course.subject, price: `${Number(course.price_egp || 0).toLocaleString('ar-EG')} ج.م`,
                     priceValue: Number(course.price_egp || 0),
                     cat: String(course.grade_name || '').includes('إعدادي') ? 'prep' : 'sec',
-                    isFreeDemoAvailable: true,
-                    isPublished: course.is_published
+                    isFreeDemoAvailable: true, isPublished: course.is_published
                 }));
-
+                if (!coursesData.length) {
+                    coursesData = [
+                        {id:'1prep',title:'علوم',gradeName:'الصف الأول الإعدادي — علوم',subject:'علوم',price:'تجريبي',priceValue:0,cat:'prep',isFreeDemoAvailable:true,isPublished:true},
+                        {id:'2prep',title:'علوم',gradeName:'الصف الثاني الإعدادي — علوم',subject:'علوم',price:'تجريبي',priceValue:0,cat:'prep',isFreeDemoAvailable:true,isPublished:true},
+                        {id:'3prep',title:'علوم',gradeName:'الصف الثالث الإعدادي — علوم',subject:'علوم',price:'تجريبي',priceValue:0,cat:'prep',isFreeDemoAvailable:true,isPublished:true},
+                        {id:'1sec',title:'فيزياء',gradeName:'الصف الأول الثانوي — فيزياء',subject:'فيزياء',price:'تجريبي',priceValue:0,cat:'sec',isFreeDemoAvailable:true,isPublished:true},
+                        {id:'2sec',title:'فيزياء',gradeName:'الصف الثاني الثانوي — فيزياء',subject:'فيزياء',price:'تجريبي',priceValue:0,cat:'sec',isFreeDemoAvailable:true,isPublished:true}
+                    ];
+                }
                 populatePaymentCourseOptions();
                 renderCourseCards();
             } catch (error) {
@@ -912,6 +948,8 @@
                 }
             }
             updateNavUserBadge();
+            renderLearningStats();
+            if (currentUser?.id) { await syncProfileToSupabase(); await loadLearningStatsFromSupabase(); }
             renderCourseCards();
             setupSecurityGuards();
             loadCoursesFromSupabase();
@@ -1144,7 +1182,7 @@
             }
         }
 
-        function submitExam() {
+        async function submitExam() {
             clearInterval(examTimerInterval);
             removeWatermark();
 
@@ -1168,6 +1206,16 @@
             const resultRecord = { student: currentUser ? currentUser.name : 'زائر', grade: currentUser?.grade || 'غير محدد', score: correctCount, total: currentExamData.length, percentage, date: new Date().toISOString(), demo: demoMode };
             examResults.push(resultRecord);
             localStorage.setItem('shehata_exam_results', JSON.stringify(examResults));
+            if (currentUser?.id && window.supabaseClient) {
+                const { error } = await window.supabaseClient.from('exam_results').insert({
+                    user_id: currentUser.id, student_name: currentUser.name,
+                    grade: resultRecord.grade, score: correctCount,
+                    total_questions: currentExamData.length, percentage,
+                    is_demo: !!demoMode, completed_at: resultRecord.date
+                });
+                if (error) console.error('Could not sync exam result:', error.message);
+            }
+            renderLearningStats();
 
             showSection('result');
         }
@@ -1409,6 +1457,8 @@
                     activeGrades: Array.isArray(currentUser?.activeGrades) ? currentUser.activeGrades : []
                 };
                 localStorage.setItem('shehata_student', JSON.stringify(currentUser));
+                await syncProfileToSupabase();
+                await loadLearningStatsFromSupabase();
                 updateNavUserBadge();
                 closeLoginModal();
                 alert(`أهلاً بك يا ${currentUser.name} في منصة العلم والإيمان!`);
@@ -1442,6 +1492,66 @@
             currentUser = null;
             location.reload();
         }
+
+        // LEARNING PROGRESS & LISTENING STATS — cloud-first with local fallback.
+        let listeningStats = JSON.parse(localStorage.getItem('shehata_listening_stats') || '{"sessions":0,"minutes":0}');
+
+        async function syncProfileToSupabase() {
+            if (!currentUser?.id || !window.supabaseClient) return;
+            const { error } = await window.supabaseClient.from('profiles').upsert({
+                id: currentUser.id, full_name: currentUser.name,
+                email: currentUser.email, grade: currentUser.grade
+            }, { onConflict: 'id' });
+            if (error) console.error('Profile sync failed:', error.message);
+        }
+
+        async function loadLearningStatsFromSupabase() {
+            if (!currentUser?.id || !window.supabaseClient) { renderLearningStats(); return; }
+            const [sessionsRes, examsRes] = await Promise.all([
+                window.supabaseClient.from('listening_sessions').select('minutes').eq('user_id', currentUser.id),
+                window.supabaseClient.from('exam_results').select('percentage,score,total_questions,completed_at,is_demo').eq('user_id', currentUser.id).order('completed_at', {ascending:false})
+            ]);
+            if (!sessionsRes.error) {
+                listeningStats = { sessions: (sessionsRes.data || []).length, minutes: (sessionsRes.data || []).reduce((n, x) => n + Number(x.minutes || 0), 0) };
+                localStorage.setItem('shehata_listening_stats', JSON.stringify(listeningStats));
+            }
+            if (!examsRes.error) {
+                examResults = (examsRes.data || []).map(x => ({percentage:x.percentage, score:x.score, total:x.total_questions, date:x.completed_at, demo:x.is_demo}));
+                localStorage.setItem('shehata_exam_results', JSON.stringify(examResults));
+            }
+            renderLearningStats();
+        }
+
+        async function recordListeningSession() {
+            const input = document.getElementById('listenedMinutesInput');
+            const minutes = Number(input?.value || 0);
+            if (!Number.isFinite(minutes) || minutes < 1 || minutes > 600) { alert('اكتب مدة استماع من دقيقة إلى 600 دقيقة.'); return; }
+            if (!currentUser?.id || !window.supabaseClient) {
+                alert('سجّل دخولك أولًا علشان نحفظ إحصائياتك في حسابك على Supabase.');
+                return;
+            }
+            const { error } = await window.supabaseClient.from('listening_sessions').insert({ user_id: currentUser.id, minutes });
+            if (error) { console.error(error); alert('تعذر حفظ جلسة الاستماع. تأكد من تشغيل ملف SQL وإعداد الصلاحيات.'); return; }
+            await loadLearningStatsFromSupabase();
+            alert(`تم حفظ ${minutes} دقيقة استماع في حسابك.`);
+        }
+
+        function renderLearningStats() {
+            listeningStats = JSON.parse(localStorage.getItem('shehata_listening_stats') || '{"sessions":0,"minutes":0}');
+            examResults = JSON.parse(localStorage.getItem('shehata_exam_results') || '[]');
+            const completed = examResults.length;
+            const average = completed ? Math.round(examResults.reduce((sum, item) => sum + Number(item.percentage || 0), 0) / completed) : 0;
+            const set = (id, value) => { const el = document.getElementById(id); if (el) el.textContent = value; };
+            set('listeningSessionsStat', listeningStats.sessions || 0);
+            set('listeningMinutesStat', `${listeningStats.minutes || 0} دقيقة`);
+            set('completedExamsStat', completed);
+            set('averageScoreStat', completed ? `${average}%` : '—');
+            set('progressPercentLabel', `${average}%`);
+            const bar = document.getElementById('learningProgressBar'); if (bar) bar.style.width = `${average}%`;
+            set('progressTip', completed ? `أنهيت ${completed} اختبارًا ومتوسط درجاتك ${average}%. استمر في المراجعة لتحسين مستواك.` : 'سجّل الدخول وابدأ اختبارًا أو سجّل وقت استماع لدرس لحفظ تقدمك على حسابك.');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => renderLearningStats());
 
         // ADMIN FUNCTIONS
         function verifyAdminLogin() {
