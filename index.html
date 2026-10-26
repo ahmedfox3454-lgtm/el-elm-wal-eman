@@ -786,7 +786,26 @@
         window.supabaseClient = null;
 
         // Courses are loaded from the published rows in public.courses.
-        let coursesData = [];
+        // المقررات الافتراضية المطلوبة: الفيزياء للثانوي والعلوم للإعدادي.
+        // يمكن استبدالها لاحقًا بكورسات منشورة من Supabase.
+        const starterCourses = [
+            { id: '1sec', title: 'الفيزياء', grade_name: 'الصف الأول الثانوي', subject: 'فيزياء', price_egp: 100, is_published: true },
+            { id: '2sec', title: 'الفيزياء', grade_name: 'الصف الثاني الثانوي', subject: 'فيزياء', price_egp: 100, is_published: true },
+            { id: '1prep', title: 'العلوم', grade_name: 'الصف الأول الإعدادي', subject: 'علوم', price_egp: 75, is_published: true },
+            { id: '2prep', title: 'العلوم', grade_name: 'الصف الثاني الإعدادي', subject: 'علوم', price_egp: 75, is_published: true },
+            { id: '3prep', title: 'العلوم', grade_name: 'الصف الثالث الإعدادي', subject: 'علوم', price_egp: 85, is_published: true }
+        ];
+        let coursesData = starterCourses.map(course => ({
+            id: course.id,
+            title: course.title,
+            gradeName: `${course.title} — ${course.grade_name}`,
+            subject: course.subject,
+            price: `${Number(course.price_egp).toLocaleString('ar-EG')} ج.م`,
+            priceValue: Number(course.price_egp),
+            cat: course.grade_name.includes('إعدادي') ? 'prep' : 'sec',
+            isFreeDemoAvailable: true,
+            isPublished: true
+        }));
 
         function initializeSupabaseClient() {
             const key = SUPABASE_PUBLISHABLE_KEY.trim();
@@ -800,7 +819,8 @@
         async function loadCoursesFromSupabase() {
             const grid = document.getElementById('coursesGrid');
             if (!initializeSupabaseClient()) {
-                if (grid) grid.innerHTML = '<div class="col-span-full rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5 text-amber-200">قاعدة البيانات لم تُربط بعد. أضف مفتاح Supabase العام داخل إعدادات الكود ثم أعد فتح الصفحة.</div>';
+                populatePaymentCourseOptions();
+                renderCourseCards();
                 return;
             }
 
@@ -812,23 +832,32 @@
                     .order('grade_name', { ascending: true });
                 if (error) throw error;
 
-                coursesData = (data || []).map(course => ({
-                    id: course.id,
-                    title: course.title,
-                    gradeName: `${course.title} — ${course.grade_name}`,
-                    subject: course.subject,
-                    price: `${Number(course.price_egp || 0).toLocaleString('ar-EG')} ج.م`,
-                    priceValue: Number(course.price_egp || 0),
-                    cat: String(course.grade_name || '').includes('إعدادي') ? 'prep' : 'sec',
-                    isFreeDemoAvailable: true,
-                    isPublished: course.is_published
-                }));
+                const allowedGradeNames = ['الصف الأول الثانوي', 'الصف الثاني الثانوي', 'الصف الأول الإعدادي', 'الصف الثاني الإعدادي', 'الصف الثالث الإعدادي'];
+                const allowedSubjects = ['فيزياء', 'الفيزياء', 'علوم', 'العلوم'];
+                const publishedCourses = (data || []).filter(course =>
+                    allowedGradeNames.some(name => String(course.grade_name || '').includes(name.replace('الصف ', ''))) &&
+                    allowedSubjects.includes(String(course.subject || '').trim())
+                );
+                if (publishedCourses.length) {
+                    coursesData = publishedCourses.map(course => ({
+                        id: course.id,
+                        title: course.title,
+                        gradeName: `${course.title} — ${course.grade_name}`,
+                        subject: course.subject,
+                        price: `${Number(course.price_egp || 0).toLocaleString('ar-EG')} ج.م`,
+                        priceValue: Number(course.price_egp || 0),
+                        cat: String(course.grade_name || '').includes('إعدادي') ? 'prep' : 'sec',
+                        isFreeDemoAvailable: true,
+                        isPublished: course.is_published
+                    }));
+                }
 
                 populatePaymentCourseOptions();
                 renderCourseCards();
             } catch (error) {
                 console.error('Supabase courses load failed:', error);
-                if (grid) grid.innerHTML = '<div class="col-span-full rounded-2xl border border-red-500/30 bg-red-500/10 p-5 text-red-200">تعذّر تحميل المواد من قاعدة البيانات. راجع المفتاح العام وسياسة القراءة للكورسات المنشورة، ثم أعد المحاولة.</div>';
+                populatePaymentCourseOptions();
+                renderCourseCards();
             }
         }
 
