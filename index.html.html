@@ -708,7 +708,7 @@
 
             <div class="text-center space-y-2">
                 <h3 id="authTitle" class="text-2xl font-black text-amber-400">إنشاء حساب طالب</h3>
-                <p class="text-xs text-slate-400 font-semibold">سجّل ببريدك الإلكتروني وكلمة مرورك للمتابعة</p>
+                <p class="text-xs text-slate-400 font-semibold">سجّل برقم هاتفك وكلمة المرور للمتابعة</p>
             </div>
 
             <div class="space-y-4 text-xs">
@@ -717,8 +717,8 @@
                     <input type="text" id="loginNameInput" autocomplete="name" placeholder="اكتب اسم الطالب بالكامل" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white">
                 </div>
                 <div>
-                    <label class="block text-slate-300 font-bold mb-1.5">البريد الإلكتروني</label>
-                    <input type="email" id="loginEmailInput" autocomplete="email" required placeholder="example@gmail.com" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white">
+                    <label class="block text-slate-300 font-bold mb-1.5">رقم الهاتف (بالصيغة الدولية)</label>
+                    <input type="tel" id="loginPhoneInput" autocomplete="tel" inputmode="tel" required placeholder="+2010xxxxxxxx" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white">
                 </div>
                 <div>
                     <label class="block text-slate-300 font-bold mb-1.5">كلمة المرور (٨ أحرف على الأقل)</label>
@@ -851,50 +851,8 @@
             ? JSON.parse(localStorage.getItem('shehata_custom_questions')) 
             : {};
 
-        const defaultQuestions = {
-            '2sec': [
-                {
-                    id: 1,
-                    type: 'mcq',
-                    text: 'في الحركة الموجية، أقصى إزاحة يصل إليها جزيء الوسط بعيداً عن موضع اتزانه تسمى:',
-                    options: ['سعة الموجة', 'الطول الموجي', 'التردد', 'الزمن الدوري'],
-                    correct: 0
-                },
-                {
-                    id: 2,
-                    type: 'mcq',
-                    text: 'عند انتقال شعاع ضوئي من وسط أقل كثافة ضوئية إلى وسط أكبر كثافة ضوئية فإنه:',
-                    options: ['ينكسر مقترباً من العمود المقيم', 'ينكسر مبتعداً عن العمود المقيم', 'ينفذ دون أن يعاني أي انكسار', 'ينعكس كلياً'],
-                    correct: 0
-                },
-                {
-                    id: 3,
-                    type: 'azhar_reason',
-                    text: 'علل لما يأتي (سؤال أزهري): يفضل استخدام المنشور العاكس في الغواصات بدلاً من المرآة المستوية؟',
-                    options: ['لأن نسبة الانعكاس فيه تصل إلى 100% ولا يفقد بريقه', 'لأنه أرخص ثمنًا', 'لأنه يمتص الضوء بالكامل', 'لأنه يكبر الصور بشكل أضخم'],
-                    correct: 0
-                },
-                {
-                    id: 4,
-                    type: 'mcq',
-                    text: 'موجة صوتية ترددها 330 هرتز تنتشر في الهواء بسرعة 330 م/ث، يكون طولها الموجي مساوياً:',
-                    options: ['1 متر', '0.5 متر', '10 متر', '330 متر'],
-                    correct: 0
-                },
-                {
-                    id: 5,
-                    type: 'mcq',
-                    text: 'ما معنى أن: الزاوية الحرجة للزجاج مع الهواء تساوي 42°؟',
-                    options: [
-                        'أن زاوية السقوط في الزجاج التي تقابلها زاوية انكسار في الهواء مقدارها 90° تساوي 42°',
-                        'أن زاوية الانعكاس تساوي 42°',
-                        'أن الضوء ينفذ دائماً بزاوية 42°',
-                        'أن معامل الانكسار يساوي 42'
-                    ],
-                    correct: 0
-                }
-            ]
-        };
+        // يبدأ بنك الأسئلة فارغًا؛ أضف الأسئلة لاحقًا من لوحة الإدارة.
+        const defaultQuestions = {};
 
         // MOCK TRANSACTIONS & CODES
         let pendingTransactions = JSON.parse(localStorage.getItem('shehata_pending_transactions') || '[]');
@@ -907,7 +865,7 @@
                 const { data: { session } } = await window.supabaseClient.auth.getSession();
                 if (session?.user) {
                     const u = session.user;
-                    currentUser = { id: u.id, name: u.user_metadata?.full_name || u.email.split('@')[0], email: u.email, grade: u.user_metadata?.grade || '2sec', activeGrades: [] };
+                    currentUser = { id: u.id, name: u.user_metadata?.full_name || u.phone || u.email?.split('@')[0] || 'طالب', phone: u.phone || null, email: u.email || null, grade: u.user_metadata?.grade || '2sec', activeGrades: [] };
                     localStorage.setItem('shehata_student', JSON.stringify(currentUser));
                 }
             }
@@ -1363,17 +1321,17 @@
         }
 
         async function submitStudentAuth() {
-            const email = document.getElementById('loginEmailInput').value.trim().toLowerCase();
+            const phone = document.getElementById('loginPhoneInput').value.trim().replace(/[\s()-]/g, '');
             const password = document.getElementById('loginPasswordInput').value;
             const name = document.getElementById('loginNameInput').value.trim();
             const grade = document.getElementById('loginGradeSelect').value;
 
             if (!initializeSupabaseClient()) {
-                alert('قاعدة البيانات غير مربوطة بالمفتاح العام. أضف مفتاح sb_publishable الخاص بمشروعك في إعدادات الكود.');
+                alert('تعذر الاتصال بقاعدة البيانات. راجع المفتاح العام لـ Supabase.');
                 return;
             }
-            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                alert('اكتب بريدًا إلكترونيًا صحيحًا.'); return;
+            if (!/^\+[1-9]\d{7,14}$/.test(phone)) {
+                alert('اكتب رقم الهاتف بالصيغة الدولية، مثل +2010xxxxxxxx.'); return;
             }
             if (password.length < 8) { alert('كلمة المرور لازم تكون ٨ أحرف على الأقل.'); return; }
 
@@ -1386,28 +1344,26 @@
                 if (studentAuthMode === 'signup') {
                     if (!name) { alert('اكتب اسم الطالب بالكامل.'); return; }
                     result = await window.supabaseClient.auth.signUp({
-                        email, password,
-                        options: {
-                            data: { full_name: name, grade },
-                            emailRedirectTo: window.location.origin
-                        }
+                        phone, password,
+                        options: { data: { full_name: name, grade } }
                     });
                 } else {
-                    result = await window.supabaseClient.auth.signInWithPassword({ email, password });
+                    result = await window.supabaseClient.auth.signInWithPassword({ phone, password });
                 }
                 if (result.error) throw result.error;
                 const user = result.data.user;
                 const session = result.data.session;
                 if (!session) {
-                    alert('تم إنشاء الحساب. افتح بريدك الإلكتروني واضغط رابط التأكيد، ثم ارجع وسجّل الدخول.');
-                    toggleStudentAuthMode();
+                    alert('تم إرسال خطوة التحقق إذا كان تأكيد الهاتف مفعّلًا. أكمل التحقق من رسالة SMS ثم سجّل الدخول. يجب إعداد مزوّد SMS في Supabase لتفعيل التسجيل برقم الهاتف.');
+                    if (studentAuthMode === 'signup') toggleStudentAuthMode();
                     return;
                 }
                 const metadata = user.user_metadata || {};
                 currentUser = {
                     id: user.id,
-                    name: metadata.full_name || name || email.split('@')[0],
-                    email: user.email,
+                    name: metadata.full_name || name || phone,
+                    phone: user.phone || phone,
+                    email: user.email || null,
                     grade: metadata.grade || grade || '2sec',
                     activeGrades: Array.isArray(currentUser?.activeGrades) ? currentUser.activeGrades : []
                 };
